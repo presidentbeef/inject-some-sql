@@ -2,9 +2,6 @@
   <%= form_tag("/query/#{query[:action]}", :remote => true, :update => "#{query[:name]}result") do %>
     <h3><%= query[:name] || query[:action] %></h3>
 
-    <div class="result" id="<%= query[:name] %>result">
-    </div>
-
     <% if query[:input] %>
       <% query[:input].each do |input| %>
         <%= label_tag input[:name] %>
@@ -13,5 +10,9 @@
     <% end %>
 
     <%= submit_tag "Run!" %>
+
+    <div class="result">
+    </div>
+
   <% end %>
 </div>
