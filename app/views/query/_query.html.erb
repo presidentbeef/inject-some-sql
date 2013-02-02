@@ -2,9 +2,11 @@
   <%= form_tag "/query/#{query[:action]}" do %>
     <h3><%= query[:name] || query[:action] %></h3>
 
-    <% query[:input].each do |input| %>
-      <%= label_tag input[:name] %>
-      <%= text_field_tag input[:name], input[:example] %>
+    <% if query[:input] %>
+      <% query[:input].each do |input| %>
+        <%= label_tag input[:name] %>
+        <%= text_field_tag input[:name], input[:example] %>
+      <% end %>
     <% end %>
 
     <%= submit_tag "Run!" %>
