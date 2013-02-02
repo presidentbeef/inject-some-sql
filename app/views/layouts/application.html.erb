@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BadSql</title>
+  <title>Rails SQL Injection Examples</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script>
+    $(document).ready(function() {
+      $(".querybox").bind("ajax:success", function(evt, data, status, xhr){
+          $(this).find('.result').html(xhr.responseText);
+      });
+    });
+  </script>
 </head>
 <body>
 

@@ -1,6 +1,9 @@
-<div class="querybox" >
-  <%= form_tag "/query/#{query[:action]}" do %>
+<div class="querybox" id="<%= query[:name] %>">
+  <%= form_tag("/query/#{query[:action]}", :remote => true, :update => "#{query[:name]}result") do %>
     <h3><%= query[:name] || query[:action] %></h3>
+
+    <div class="result" id="<%= query[:name] %>result">
+    </div>
 
     <% if query[:input] %>
       <% query[:input].each do |input| %>
