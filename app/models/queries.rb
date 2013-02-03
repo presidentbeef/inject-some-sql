@@ -2,21 +2,21 @@ Queries = [
   {
     :action => :calculate,
     :query => "Order.calculate(:sum, params[:column])",
-    :input => [:name => :column, :example => 'blah']
+    :input => [:name => :column, :example => "age) FROM users WHERE name = 'Bob';"]
   },
 
   {
     :action => :conditions_string,
     :query => 'User.first(:conditions => "name = \'#{params[:name]}\'")',
-    :input => [:name => :name, :example => "name=') or 1=1--"]
+    :input => [:name => :name, :example => "name=') OR admin = 't' --"]
   },
 
   { :action => :exists },
 
   {
     :action => :from_option,
-    :query => "User.all(:from => params[:from]).where(:admin => false)",
-    :input => [:name => :from, :example => "from=users--"]
+    :query => "User.all(:from => params[:from], :conditions => { :admin => :false })",
+    :input => [:name => :from, :example => "users WHERE admin = 't';"]
   },
 
   {
@@ -27,19 +27,19 @@ Queries = [
 
   {
     :action => :having,
-    :query => 'Order.where(:customer_id => current_user).group(:customer_id).having("total > #{params[:total]}")',
-    :input => [:name => :total, :example => "total=1 UNION SELECT * FROM orders"]
+    :query => 'Order.where(:user_id => 1).group(:user_id).having("total > #{params[:total]}")',
+    :input => [:name => :total, :example => "1 UNION SELECT * FROM orders"]
   },
 
   {
     :action => :having_option,
-    :query => 'Order.all(:conditions => { :customer_id => current_user }, :group => :customer_id, :having => "total > #{params[:total]}")',
+    :query => 'Order.all(:conditions => { :user_id => current_user }, :group => :user_id, :having => "total > #{params[:total]}")',
     :input => [:name => :total, :example => "total=1 UNION SELECT * FROM orders"]
   },
 
   {
     :action => :joins,
-    :query => 'Order.where(:customer_id => current_user).joins(params[:table])',
+    :query => 'Order.where(:user_id => current_user).joins(params[:table])',
     :input => [:name => :table, :example => "table=,users--"]
   },
 
