@@ -1,18 +1,32 @@
 <div class="querybox" id="<%= query[:name] %>">
   <%= form_tag("/query/#{query[:action]}", :remote => true, :update => "#{query[:name]}result") do %>
-    <h3><%= query[:name] || query[:action] %></h3>
+    <fieldset>
+      <legend><%= query[:name] || query[:action] %></legend>
 
-    <% if query[:input] %>
-      <% query[:input].each do |input| %>
-        <%= label_tag input[:name] %>
-        <%= text_field_tag input[:name], input[:example] %>
+      <div style="margin-bottom: 4px">
+        <code><%= query[:query] %></code>
+      </div>
+
+      <% if query[:input] %>
+        <% query[:input].each do |input| %>
+          <div class="control-group">
+            <div class="input-prepend input-append">
+              <span class="add-on"><%= input[:name].capitalize %></span>
+              <%= text_field_tag input[:name], input[:example], :class => 'text_field' %>
+
+              <%= submit_tag "Run!", :class => 'btn' %>
+            </div>
+          </div>
+
+        <% end %>
+
       <% end %>
     <% end %>
+  </fieldset>
 
-    <%= submit_tag "Run!" %>
+  <div class="result" >
+  </div>
 
-    <div class="result">
-    </div>
-
-  <% end %>
 </div>
+
+

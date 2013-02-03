@@ -1,14 +1,24 @@
-<div>
-<strong>Params</strong><br>
-<%= params.inspect %>
-</div>
+<div class="well">
+  <div>
+    <strong>Query</strong>
+    <div class="">
+      <%= $last_sql %>
+    </div>
+  </div>
 
-<div>
-<strong>Query</strong><br>
-<%= $last_sql %>
-</div>
+  <div>
+    <strong>Result</strong>
+    <div class="">
+      <%= query.inspect %>
+    </div>
+  </div>
 
-<div>
-<strong>Result</strong><br>
-<%= query.inspect %>
+  <div>
+    <strong>Params</strong>
+    <div class="">
+      <%= params.inspect %>
+    </div>
+  </div>
+
+
 </div>
