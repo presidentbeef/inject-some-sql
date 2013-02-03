@@ -14,7 +14,7 @@
       $(".querybox").bind("ajax:success", show_result);
 
       $("#clear").click(function() {
-        $(this).find('.result').hide().empty();
+        $('.result').hide().empty();
       });
     });
   </script>
@@ -31,7 +31,7 @@
         <a class="brand" href="#">Inject Some SQL</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Clear Results", "", :id => "clear" %></li>
+            <li><%= link_to "Clear Results", "#", :id => "clear" %></li>
           </ul>
         </div>
       </div>
