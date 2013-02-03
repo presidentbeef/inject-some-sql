@@ -7,9 +7,11 @@
   <%= csrf_meta_tags %>
   <script>
     $(document).ready(function() {
-      $(".querybox").bind("ajax:success", function(evt, data, status, xhr){
-          $(this).find('.result').show().html(xhr.responseText);
-      });
+      var show_result = function(evt, data, status, xhr){
+        $(this).find('.result').show().html(xhr.responseText);
+      };
+
+      $(".querybox").bind("ajax:success", show_result);
 
       $("#clear").click(function() {
         $(this).find('.result').hide().empty();
