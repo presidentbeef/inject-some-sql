@@ -11,7 +11,7 @@ class QueryController < ApplicationController
         rescue => e
           @error = e
           @sql = last_sql
-          render 'error'
+          render :partial => 'error'
         end
       end
     RUBY
@@ -21,7 +21,7 @@ class QueryController < ApplicationController
 
   def show query
     @sql = last_sql
-    render 'show', :locals => { :query => query }
+    render :partial => 'result', :locals => { :query => query }
   end
 
   def last_sql
