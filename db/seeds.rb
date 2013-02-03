@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ["Bob", "Jim", "Sarah", "Tina", "Tony"].each do |name|
-  User.create :name => name, :password => "#{name}pass", :admin => false
+  User.create :name => name, :password => "#{name}pass", :admin => false, :age => (rand(60) + 18)
 end
 
 User.create :name => "Admin", :password => "supersecretpass", :admin => true
