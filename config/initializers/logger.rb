@@ -1,12 +1,12 @@
-if defined? ActiveRecord::ConnectionAdapters::AbstractAdapter
-  $stderr.puts "uep"
+if not defined? ActiveRecord::ConnectionAdapters::AbstractAdapter
+  abort "Need to be able to override AbstractAdapter log"
+end
 
-  class ActiveRecord::ConnectionAdapters::AbstractAdapter
-    alias oldlog log
+class ActiveRecord::ConnectionAdapters::AbstractAdapter
+  alias oldlog log
 
-    def log sql, *args, &block
-      $last_sql = sql
-      oldlog sql, *args, &block
-    end
+  def log sql, *args, &block
+    $last_sql = sql
+    oldlog sql, *args, &block
   end
 end
