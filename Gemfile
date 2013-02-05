@@ -31,6 +31,8 @@ gem 'jquery-rails'
 
 gem 'coderay', "~> 1.0.8"
 
+gem 'rdiscount'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
