@@ -23,6 +23,16 @@ rails s
 
 Open up [localhost:3000](http://localhost:3000) in a browser. 
 
+### Reset Database
+
+It's easy to mess up a database with SQL injection.
+
+To reset:
+
+```
+rake db:drop db:migrate db:seed
+```
+
 ### Inject SQL!
 
 The site lists a whole bunch of ActiveRecord queries.
