@@ -1,0 +1,22 @@
+<div>
+  <h3><%= query[:name] || query[:action] %></h3>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<%= ruby_color "params[:#{query[:input][:name]}] = #{query[:input][:example].inspect}" %>
+<%= ruby_color query[:query] %></pre>
+  </div>
+
+  <div></div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <%= sql_color query[:sql] %>
+    </div>
+    <strong>Result</strong>
+    <div>
+      <%= query[:result] %>
+    </div>
+  </div>
+</div>

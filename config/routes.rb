@@ -1,6 +1,8 @@
 BadSql::Application.routes.draw do
   match 'query/:action', :controller => :query
 
+  match 'examples' => 'query#examples'
+
   root :to => 'query#index'
 
   # The priority is based upon order of creation:

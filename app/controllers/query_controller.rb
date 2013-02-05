@@ -3,6 +3,26 @@ class QueryController < ApplicationController
     @queries = Queries
   end
 
+  def examples
+    @queries = Queries.map do |q|
+      params[q[:input][:name]] = q[:input][:example]
+
+      result = q.dup
+
+      begin
+        result[:result] = eval(q[:query]).inspect
+      rescue => e
+        result[:sql] = last_sql
+        result[:result] = e
+      end
+
+      params[q[:input][:name]] = nil
+
+      result[:sql] = last_sql
+      result
+    end
+  end
+
   Queries.each do |query|
     class_eval <<-RUBY
       def #{query[:action]}

@@ -1,0 +1,9 @@
+<table class="table">
+  <% @queries.each do |q| %>
+  <tr>
+    <td>
+      <%= render :partial => 'example', :locals => { :query => q } %>
+    </td>
+  </tr>
+  <% end %>
+</table>
