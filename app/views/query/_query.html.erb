@@ -7,18 +7,15 @@
         <code><%= ruby_color query[:query] %></code>
       </div>
 
-      <% if query[:input] %>
-        <% query[:input].each do |input| %>
-          <div class="control-group">
-            <div class="input-prepend input-append">
-              <span class="add-on"><%= input[:name].capitalize %></span>
-              <%= text_field_tag input[:name], input[:example], :class => 'text_field input-xlarge' %>
+      <% if input = query[:input] %>
+        <div class="control-group">
+          <div class="input-prepend input-append">
+            <span class="add-on"><%= input[:name].capitalize %></span>
+            <%= text_field_tag input[:name], input[:example], :class => 'text_field input-xlarge' %>
 
-              <%= submit_tag "Run!", :class => 'btn' %>
-            </div>
+            <%= submit_tag "Run!", :class => 'btn' %>
           </div>
-
-        <% end %>
+        </div>
 
       <% end %>
     <% end %>
@@ -28,5 +25,3 @@
   </div>
 
 </div>
-
-
