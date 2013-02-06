@@ -73,8 +73,8 @@ Options:
 * `:having` - Unsanitized SQL string for `HAVING` clause.
 * `:limit` - Will be converted to an integer.
 * `:offset` - Will be converted to an integer.
-* `:joins` - Accepts SQL string, which is not sanitized. Also accepts a hash of associations or an array containing both strings and hashes.
-* `:include` - Accepts hash of named associations.
+* `:joins` - Accepts SQL string, which is not sanitized. Also accepts named associations or an array containing both strings and named associations.
+* `:include` - Only accepts named associations.
 * `:select` - Unsanitized SQL string `SELECT` clause.
 * `:from` - Unsanitized SQL string.
 * `:readonly` - Boolean value
@@ -132,7 +132,7 @@ User input in `:from` options is likely rare.
     :query => 'Order.where(:user_id => 1).joins(params[:table])',
     :input => {:name => :table, :example => "--"},
     :example => 'Skip WHERE clause and return all orders instead of just the orders for the specified user.',
-    :desc => 'The `joins` method can take a hash of associations or straight SQL strings.'
+    :desc => 'The `joins` method can take an array of associations or straight SQL strings.'
   },
 
 =begin
