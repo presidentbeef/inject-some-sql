@@ -20,7 +20,6 @@ Calculation methods:
 * maximum
 * minimum
 * sum
-* pluck(?)
     MD
   },
 
@@ -170,6 +169,19 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
     :input => {:name => :sort, :example => ',8'},
     :example => 'Since `ORDER BY` clauses can accept a column index, they can be used to determine the number of columns in the table. The index can be incremented until the query returns an error.',
     :desc => 'The `:order` option, like the method, will accept any SQL string.'
+  },
+
+  {
+    :action => :pluck,
+    :name => "Pluck Method",
+    :query => 'Order.pluck(params[:column])',
+    :input => {:name => :column, :example => 'password FROM users--'},
+    :example => 'Output the passwords from the users table.',
+    :desc => <<-MD
+The `pluck` method is intended to select a specific column from a table. Instead, it accepts an SQL statement at all. This allows an attacker to completely control the query from `SELECT` onwards.
+
+However, the return result will still be an array of values from a single column.
+    MD
   },
 
   {
