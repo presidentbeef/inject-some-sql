@@ -21,6 +21,8 @@ class QueryController < ApplicationController
       result[:sql] = last_sql
       result
     end
+
+    render :layout => 'examples'
   end
 
   Queries.each do |query|
