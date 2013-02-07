@@ -1,4 +1,6 @@
 class QueryController < ApplicationController
+  after_filter :reset_database, :except => [:index, :examples]
+
   def index
     @queries = Queries
   end
@@ -12,13 +14,14 @@ class QueryController < ApplicationController
       begin
         result[:result] = eval(q[:query]).inspect
       rescue => e
-        result[:sql] = last_sql
         result[:result] = e
       end
 
       params[q[:input][:name]] = nil
-
       result[:sql] = last_sql
+
+      reset_database
+
       result
     end
 
@@ -50,5 +53,11 @@ class QueryController < ApplicationController
     sql = $last_sql
     $last_sql = nil
     sql
+  end
+
+  def reset_database
+    Order.delete_all
+    User.delete_all
+    load File.join(Rails.root, 'db/seeds.rb')
   end
 end
