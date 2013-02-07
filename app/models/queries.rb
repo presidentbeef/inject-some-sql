@@ -24,6 +24,41 @@ Calculation methods:
   },
 
   {
+    :action => :delete_all,
+    :name => "Delete All Method",
+    :query => 'User.delete_all("id = #{params[:id]}")',
+    :input => {:name => :id, :example => '1) OR 1=1--'},
+    :example => "Bypass any conditions and delete all users.",
+    :desc => <<-MD
+Any methods which delete records should be used with care!
+
+The `delete_all` method takes the same kind of conditions arguments as `find`.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.
+
+Never pass user input directly to `delete_all`.
+    MD
+  },
+
+  {
+    :action => :destroy_all,
+    :name => "Destroy All Method",
+    :query => 'User.destroy_all(["id = ? AND admin = \'#{params[:admin]}", params[:id]])',
+    :input => {:name => :admin, :example => "') OR 1=1--'"},
+    :example => "Bypass any conditions and delete all users.",
+    :desc => <<-MD
+Any methods which delete records should be used with lots of caution! `destroy_all` is only slightly safer
+than `delete_all` since it will invoke callbacks associated with the model.
+
+The `destroy_all` method takes the same kind of conditions arguments as `find`.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.
+
+Never pass user input directly to `destroy_all`.
+    MD
+  },
+
+  {
     :action => :exists,
     :name => "Exists? Method",
     :query => 'User.exists? ["name = \'#{params[:user]}\'"]',
@@ -178,7 +213,7 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
     :input => {:name => :column, :example => 'password FROM users--'},
     :example => 'Output the passwords from the users table.',
     :desc => <<-MD
-The `pluck` method is intended to select a specific column from a table. Instead, it accepts an SQL statement at all. This allows an attacker to completely control the query from `SELECT` onwards.
+The `pluck` method is intended to select a specific column from a table. Instead, it accepts any SQL statement at all. This allows an attacker to completely control the query from `SELECT` onwards.
 
 However, the return result will still be an array of values from a single column.
     MD
