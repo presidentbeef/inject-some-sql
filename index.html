@@ -5,7 +5,7 @@
   <link href="/assets/application-6ad94e3067a503b204d3925f4b42a3f9.css" media="all" rel="stylesheet" type="text/css" />
   <script src="/assets/application-b72e684d3d1cff07d1794d336352013e.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-<meta content="Ml6aF9NdacMJNW6VZ01/ao1J1tf4Fy83SJQNdG5upHo=" name="csrf-token" />
+<meta content="utm2JpEuD0rJNbc++GgRrwBxTCYjnaW7ZuZynCX6bEk=" name="csrf-token" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -122,7 +122,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      69
+      44
     </div>
   </div>
 </div>
@@ -153,7 +153,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
 
   <h4>Example</h4>
   <p>
-    <p>Bypass any conditions and delete all users.</p>
+    <p>This example bypasses any conditions and deletes all users.</p>
 
   </p>
 
@@ -202,7 +202,12 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
 
   <h4>Example</h4>
   <p>
-    <p>Bypass any conditions and delete all users.</p>
+    <p>This example bypasses any conditions and deletes all users.</p>
+
+<p>Because ActiveRecord needs to insantiate each object, this query is performed in a transaction.
+The SQL for selecting the records to delete (where the injection occurs) looks like this:</p>
+
+<p><span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> (id = <span style="color:#069">NULL</span> <span style="color:#080;font-weight:bold">AND</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span><span style="color:#777">--')</span></span></p>
 
   </p>
 
@@ -219,7 +224,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1201, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1202, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 52, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1203, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 31, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1204, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 54, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1205, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 39, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1206, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 37, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;User id: 1417, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 44, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1418, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1419, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 33, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1420, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 34, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1421, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 74, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1422, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 60, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -349,7 +354,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 1218, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
+      #&lt;User id: 1434, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 22, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;
     </div>
   </div>
 </div>
@@ -393,7 +398,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1224, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 56, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;User id: 1440, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 62, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -435,7 +440,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1225, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 60, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1226, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1227, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1228, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 69, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1229, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 64, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1230, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;User id: 1441, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 23, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1442, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 73, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1443, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 57, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1444, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 69, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1445, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 74, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1446, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 63, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -477,7 +482,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 616, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 617, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 618, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;Order id: 724, user_id: 1, total: 10, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 725, user_id: 3, total: 500, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 726, user_id: 4, total: 1, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -519,7 +524,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 619, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 620, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 621, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;Order id: 727, user_id: 1, total: 10, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 728, user_id: 3, total: 500, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 729, user_id: 4, total: 1, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -561,7 +566,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 622, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 623, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 624, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;Order id: 730, user_id: 1, total: 10, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 731, user_id: 3, total: 500, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;Order id: 732, user_id: 4, total: 1, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -603,7 +608,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1249, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1250, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 41, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1251, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 30, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1252, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1253, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 35, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1254, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 72, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;User id: 1465, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 37, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1466, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 45, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1467, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 74, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1468, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 72, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1469, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 31, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1470, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 21, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -645,7 +650,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1260, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 20, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1255, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1256, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 61, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1257, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 21, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1258, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1259, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
+      [#&lt;User id: 1476, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 55, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1471, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 75, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1472, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 70, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1473, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 50, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1474, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 48, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;, #&lt;User id: 1475, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 30, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;]
     </div>
   </div>
 </div>
@@ -815,7 +820,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 1284, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
+      #&lt;User id: 1500, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 34, admin: true, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;
     </div>
   </div>
 </div>
@@ -857,7 +862,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 1285, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 68, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
+      #&lt;User id: 1501, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 18:36:27&quot;, updated_at: &quot;2013-02-08 18:36:27&quot;&gt;
     </div>
   </div>
 </div>
