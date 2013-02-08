@@ -2,28 +2,10 @@
 <html>
 <head>
   <title>Rails SQL Injection Examples</title>
-  <link href="assets/application.css" media="all" rel="stylesheet" type="text/css" />
-<link href="assets/bootstrap_and_overrides.css" media="all" rel="stylesheet" type="text/css" />
-  <script src="assets/jquery.js" type="text/javascript"></script>
-<script src="assets/jquery_ujs.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-transition.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-alert.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-modal.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-dropdown.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-scrollspy.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-tab.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-tooltip.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-popover.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-button.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-collapse.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-carousel.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-typeahead.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap/bootstrap-affix.js" type="text/javascript"></script>
-<script src="assets/twitter/bootstrap.js" type="text/javascript"></script>
-<script src="assets/bootstrap.js" type="text/javascript"></script>
-<script src="assets/application.js" type="text/javascript"></script>
+  <link href="/assets/application-6ad94e3067a503b204d3925f4b42a3f9.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="/assets/application-b72e684d3d1cff07d1794d336352013e.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-<meta content="3xfrXpVUMkbbCuF457caSDVT+mXOXIpLwRIEvXzWrQE=" name="csrf-token" />
+<meta content="Ml6aF9NdacMJNW6VZ01/ao1J1tf4Fy83SJQNdG5upHo=" name="csrf-token" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -40,6 +22,8 @@
           <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
               <option value="#overview">Overview</option>
               <option value="#calculate">Calculate Methods</option>
+              <option value="#delete_all">Delete All Method</option>
+              <option value="#destroy_all">Destroy All Method</option>
               <option value="#exists">Exists? Method</option>
               <option value="#find">Find Methods</option>
               <option value="#from_option">From Option</option>
@@ -90,6 +74,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="calculate">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html#method-i-calculate">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Calculate Methods</h3>
 
   <div>
@@ -132,7 +122,104 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      24
+      69
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="delete_all">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-delete_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Delete All Method</h3>
+
+  <div>
+    <p>Any methods which delete records should be used with care!</p>
+
+<p>The <code>delete_all</code> method takes the same kind of conditions arguments as <code>find</code>.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.</p>
+
+<p>Never pass user input directly to <code>delete_all</code>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Bypass any conditions and delete all users.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:id</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1) OR 1=1--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.delete_all(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id = </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:id</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">DELETE</span> <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> (id = <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span><span style="color:#777">--)</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      6
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="destroy_all">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-destroy_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Destroy All Method</h3>
+
+  <div>
+    <p>Any methods which delete records should be used with lots of caution! <code>destroy_all</code> is only slightly safer
+than <code>delete_all</code> since it will invoke callbacks associated with the model.</p>
+
+<p>The <code>destroy_all</code> method takes the same kind of conditions arguments as <code>find</code>.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.</p>
+
+<p>Never pass user input directly to <code>destroy_all</code>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Bypass any conditions and delete all users.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:admin</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">') OR 1=1--'</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.destroy_all([<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id = ? AND admin = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:admin</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>, params[<span style="color:#A60">:id</span>]])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 1201, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1202, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 52, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1203, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 31, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1204, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 54, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1205, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 39, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1206, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 37, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -142,6 +229,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="exists">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Exists? Method</h3>
 
   <div>
@@ -200,6 +293,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="find">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Find Methods</h3>
 
   <div>
@@ -250,7 +349,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;
+      #&lt;User id: 1218, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
     </div>
   </div>
 </div>
@@ -260,6 +359,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="from_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>From Option</h3>
 
   <div>
@@ -288,7 +393,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;User id: 1224, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 56, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -298,6 +403,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="group_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Group Option</h3>
 
   <div>
@@ -324,7 +435,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 24, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 2, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 71, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 3, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 57, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 4, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 38, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 5, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 59, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;User id: 1225, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 60, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1226, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1227, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1228, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 69, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1229, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 64, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1230, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -334,6 +445,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="having">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-from">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Having Method</h3>
 
   <div>
@@ -360,7 +477,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 1, user_id: 1, total: 10, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 2, user_id: 3, total: 500, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 3, user_id: 4, total: 1, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;Order id: 616, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 617, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 618, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -370,6 +487,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="having_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Having Option</h3>
 
   <div>
@@ -392,11 +515,11 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> user_id <span style="color:#080;font-weight:bold">HAVING</span> total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders</span>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 1, user_id: 1, total: 10, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 2, user_id: 3, total: 500, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 3, user_id: 4, total: 1, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;Order id: 619, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 620, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 621, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -406,6 +529,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="joins">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-joins">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Joins Method</h3>
 
   <div>
@@ -432,7 +561,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 1, user_id: 1, total: 10, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 2, user_id: 3, total: 500, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;Order id: 3, user_id: 4, total: 1, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;Order id: 622, user_id: 1, total: 10, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 623, user_id: 3, total: 500, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;Order id: 624, user_id: 4, total: 1, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -442,6 +571,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="lock">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-lock">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Lock Method and Option</h3>
 
   <div>
@@ -468,7 +603,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 1, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 24, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 2, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 71, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 3, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 57, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 4, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 38, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 5, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 59, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;User id: 1249, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1250, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 41, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1251, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 30, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1252, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1253, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 35, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1254, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 72, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -478,6 +613,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="order">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Order Method</h3>
 
   <div>
@@ -504,7 +645,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 1, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 24, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 2, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 71, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 3, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 57, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 4, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 38, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;, #&lt;User id: 5, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 59, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;]
+      [#&lt;User id: 1260, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 20, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1255, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1256, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 61, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1257, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 21, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1258, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 40, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;, #&lt;User id: 1259, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 55, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;]
     </div>
   </div>
 </div>
@@ -514,6 +655,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="order_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Order Option</h3>
 
   <div>
@@ -536,7 +683,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> name ,<span style="color:#00D">8</span></span>
     </div>
     <strong>Result</strong>
     <div>
@@ -550,10 +697,16 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="pluck">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html#method-i-pluck">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Pluck Method</h3>
 
   <div>
-    <p>The <code>pluck</code> method is intended to select a specific column from a table. Instead, it accepts an SQL statement at all. This allows an attacker to completely control the query from <code>SELECT</code> onwards.</p>
+    <p>The <code>pluck</code> method is intended to select a specific column from a table. Instead, it accepts any SQL statement at all. This allows an attacker to completely control the query from <code>SELECT</code> onwards.</p>
 
 <p>However, the return result will still be an array of values from a single column.</p>
 
@@ -588,6 +741,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="reorder">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-reorder">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Reorder Method</h3>
 
   <div>
@@ -610,7 +769,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> id , <span style="color:#00D">8</span></span>
     </div>
     <strong>Result</strong>
     <div>
@@ -624,6 +783,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="select_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Select Option</h3>
 
   <div>
@@ -650,7 +815,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 6, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: nil, admin: true, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;
+      #&lt;User id: 1284, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
     </div>
   </div>
 </div>
@@ -660,6 +825,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="where">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-where">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Where Method</h3>
 
   <div>
@@ -686,7 +857,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 1, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 24, admin: false, created_at: &quot;2013-02-06 02:58:40&quot;, updated_at: &quot;2013-02-06 02:58:40&quot;&gt;
+      #&lt;User id: 1285, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 68, admin: false, created_at: &quot;2013-02-08 04:02:50&quot;, updated_at: &quot;2013-02-08 04:02:50&quot;&gt;
     </div>
   </div>
 </div>
@@ -696,6 +867,12 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
   <tr>
     <td>
       <div id="update_all_order_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-update_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
   <h3>Update All Order Option</h3>
 
   <div>
