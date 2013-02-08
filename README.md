@@ -25,9 +25,10 @@ Open up [localhost:3000](http://localhost:3000) in a browser.
 
 ### Reset Database
 
-It's easy to mess up a database with SQL injection.
+It's easy to mess up a database with SQL injection. The server does attempt to
+reset the database after each query, but that isn't foolproof.
 
-To reset:
+To completely reset:
 
 ```
 rake db:drop db:migrate db:seed
@@ -48,3 +49,7 @@ All queries are generated from `app/models/queries.rb`.
 ## Limitations
 
 * This is a single player game because the SQL query is stored in a global variable.
+
+## License
+
+This code is made available under the MIT license.
