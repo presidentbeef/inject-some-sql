@@ -112,7 +112,7 @@ The first argument to `find` *will* be escaped.
 
 Options:
 
-* `:conditions` - Can be a string, an array, or a hash. If a string, it will be passed to the database unchanged. If an array, the first element is a string and the remaining elements are values to interpolate into the string. The values will be sanitized, but the first element will not. If a hash is given, the values of the hash will be sanitized, but the keys will not.
+* `:conditions` - Can be a string, an array, or a hash. If a string, it will be passed to the database unchanged. If an array, the first element is a string and the remaining elements are values to interpolate into the string. The values will be sanitized, but the string element will not. If a hash is given, the keys and values will be properly sanitized.
 * `:order` - Unsanitized SQL string for `ORDER BY` clause.
 * `:group` - Unsanitized SQL string for `GROUP BY` clause.
 * `:having` - Unsanitized SQL string for `HAVING` clause.
