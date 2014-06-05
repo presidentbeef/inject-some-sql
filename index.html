@@ -24,6 +24,7 @@
                 <option value="#destroy_all">Destroy All Method</option>
                 <option value="#exists">Exists? Method</option>
                 <option value="#find">Find Methods</option>
+                <option value="#find_by">Find By Method</option>
                 <option value="#from_option">From Option</option>
                 <option value="#group_option">Group Option</option>
                 <option value="#having">Having Method</option>
@@ -351,6 +352,50 @@
                 <strong>Result</strong>
                 <div>
                   #&lt;User id: 1650, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 51, admin: true, created_at: &quot;2013-02-11 17:03:47&quot;, updated_at: &quot;2013-02-11 17:03:47&quot;&gt;
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="find_by">
+              <div>
+                <p class="pull-right">
+                <a href="http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find_by">Documentation <i class="icon-share"></i></a>
+                </p>
+              </div>
+
+              <h3>Find By Method</h3>
+
+              <div>
+                <p>Added in Rails 4, the <code>find_by</code>/<code>find_by!</code> methods are simply calling <code>where(*args).take</code>, so all the options for <code>where</code> also apply.</p>
+
+                <p>The safest (and most common) use of these methods is to pass in a hash table.</p>
+
+              </div>
+
+              <h4>Example</h4>
+              <p>
+              <p>Naturally, passing in query parameters directly is dangerous, but there are instances of code doing this in the wild. String values passed in this way are not escaped or sanitized in any way.</p>
+
+              </p>
+
+              <div style="margin-bottom: 4px">
+                <pre>
+<span class="CodeRay">params[<span style="color:#A60">:id</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">admin = 't'</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.find_by params[<span style="color:#A60">:id</span>]</span></pre>
+              </div>
+
+              <div class="result well">
+                <strong>Query</strong>
+                <div>
+                  <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span>) LIMIT <span style="color:#00D">1</span></span>
+                </div>
+                <strong>Result</strong>
+                <div>
+                  #&lt;User id: 1140, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 75, admin: true, created_at: &quot;2014-06-05 22:37:20&quot;, updated_at: &quot;2014-06-05 22:37:20&quot;&gt;
                 </div>
               </div>
             </div>
