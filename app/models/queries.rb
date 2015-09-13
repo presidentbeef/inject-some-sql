@@ -2,7 +2,7 @@ Queries = [
   {
     :action => :calculate,
     :name => "Calculate Methods",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html#method-i-calculate",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Calculations.html#method-i-calculate",
     :query => "Order.calculate(:sum, params[:column])",
     :input => {:name => :column, :example => "age) FROM users WHERE name = 'Bob';"},
     :example => "This example finds the age of a specific user, rather than the sum of all user ages.",
@@ -27,7 +27,7 @@ Calculation methods:
   {
     :action => :delete_all,
     :name => "Delete All Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-delete_all",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-delete_all",
     :query => 'User.delete_all("id = #{params[:id]}")',
     :input => {:name => :id, :example => '1) OR 1=1--'},
     :example => "This example bypasses any conditions and deletes all users.",
@@ -45,7 +45,7 @@ Never pass user input directly to `delete_all`.
   {
     :action => :destroy_all,
     :name => "Destroy All Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-destroy_all",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-destroy_all",
     :query => 'User.destroy_all(["id = ? AND admin = \'#{params[:admin]}", params[:id]])',
     :input => {:name => :admin, :example => "') OR 1=1--'"},
     :example => "This example bypasses any conditions and deletes all users.
@@ -69,7 +69,7 @@ Never pass user input directly to `destroy_all`.
   {
     :action => :exists,
     :name => "Exists? Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F",
     :query => 'User.exists? ["name = \'#{params[:user]}\'"]',
     :input => {:name => :user, :example => "') or (SELECT 1 FROM 'orders' WHERE total > 1)--" },
     :example => "This is more obvious than the example above, but demonstrates checking another table for a given value.",
@@ -101,7 +101,7 @@ This query will always return true. To be be safe, convert user input to a strin
   {
     :action => :find,
     :name => "Find Methods",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => 'User.find(:first, :conditions => "name = \'#{params[:name]}\'")',
     :input => {:name => :name, :example => "name=') OR admin = 't' --"},
     :example => "This is just a tiny example of what can be done with interpolation in conditions. Here we return the first user with the admin flag set.",
@@ -127,14 +127,14 @@ Options:
 
 The `all`, `first`, `last`, `exists`, `where`, `calculate`, `update_all` and other methods accept these options or a subset.
 
-For more information, see [the ActiveRecord docs](http://api.rubyonrails.org/classes/ActiveRecord/Base.html).
+For more information, see [the ActiveRecord docs](http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Base.html).
   MD
   },
 
   {
     :action => :from_option,
     :name => "From Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => "User.all(:from => params[:from], :conditions => { :admin => :false })",
     :input => {:name => :from, :example => "users WHERE admin = 't';"},
     :example => "Instead of returning all non-admin users, we return all admin users.",
@@ -148,7 +148,7 @@ User input in `:from` options is likely rare.
   {
     :action => :group_option,
     :name => "Group Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => "User.find(:all, :group => params[:group], :conditions => { :admin => false })",
     :input => {:name => :group, :example => "name UNION SELECT * FROM users"},
     :example => "The intent of this query is to group non-admin users by the specified column. Instead, the query returns all users.",
@@ -158,7 +158,7 @@ User input in `:from` options is likely rare.
   {
     :action => :having,
     :name => "Having Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-from",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-from",
     :query => 'Order.where(:user_id => 1).group(:user_id).having("total > #{params[:total]}")',
     :input => {:name => :total, :example => "1 UNION SELECT * FROM orders"},
     :example => "This input injects a union in order to return all orders, instead of just the orders from a single user.",
@@ -168,7 +168,7 @@ User input in `:from` options is likely rare.
   {
     :action => :having_option,
     :name => "Having Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => 'Order.all(:conditions => { :user_id => 1 }, :group => :user_id, :having => "total > #{params[:total]}")',
     :input => {:name => :total, :example => "1 UNION SELECT * FROM orders"},
     :example => "This input injects a union in order to return all orders, instead of just the orders from a single user.",
@@ -178,7 +178,7 @@ User input in `:from` options is likely rare.
   {
     :action => :joins,
     :name => "Joins Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-joins",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-joins",
     :query => 'Order.where(:user_id => 1).joins(params[:table])',
     :input => {:name => :table, :example => "--"},
     :example => 'Skip WHERE clause and return all orders instead of just the orders for the specified user.',
@@ -188,7 +188,7 @@ User input in `:from` options is likely rare.
   {
     :action => :lock,
     :name => "Lock Method and Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-lock",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-lock",
     :query => "User.where(1).lock(params[:lock])",
     :input => {:name => :lock, :example => "?"},
     :example => "Not a real example: SQLite does not support this option.",
@@ -200,7 +200,7 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
   {
     :action => :order,
     :name => 'Order Method',
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-order",
     :query => 'User.order("#{params[:sortby]} ASC")',
     :input => {:name => :sortby, :example => "(CASE SUBSTR(password, 1, 1) WHEN 's' THEN 0 else 1 END)"},
     :example => 'Taking advantage of SQL injection in `ORDER BY` clauses is tricky, but a `CASE` statement can be used to test other fields, switching the sort column for true or false. While it can take many queries, an attacker can determine the value of the field.',
@@ -210,7 +210,7 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
   {
     :action => :order_option,
     :name => 'Order Option',
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => 'User.all(:order => "name #{params[:sort]}")',
     :input => {:name => :sort, :example => ',8'},
     :example => 'Since `ORDER BY` clauses can accept a column index, they can be used to determine the number of columns in the table. The index can be incremented until the query returns an error.',
@@ -220,7 +220,7 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
   {
     :action => :pluck,
     :name => "Pluck Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html#method-i-pluck",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Calculations.html#method-i-pluck",
     :query => 'Order.pluck(params[:column])',
     :input => {:name => :column, :example => 'password FROM users--'},
     :example => 'Output the passwords from the users table.',
@@ -234,7 +234,7 @@ However, the return result will still be an array of values from a single column
   {
     :action => :reorder,
     :name => "Reorder Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-reorder",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-reorder",
     :query => 'User.order("name DESC").reorder("id #{params[:order]}")',
     :input => {:name => :order, :example => ", 8"},
     :example => 'The `reorder` method is vulnerable to the same type of injection attacks as `order`.',
@@ -244,7 +244,7 @@ However, the return result will still be an array of values from a single column
   {
     :action => :select_option,
     :name => 'Select Option',
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find",
     :query => 'User.first(:conditions => { :name => params[:name], :password => params[:password] }, :select => params[:column])',
     :input => {:name => :column, :example => "* FROM users WHERE admin = 't' ;"},
     :example => 'Since the `SELECT` clause is at the beginning of the query, nearly any SQL can be injected.',
@@ -254,7 +254,7 @@ However, the return result will still be an array of values from a single column
   {
     :action => :where,
     :name => "Where Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-where",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-where",
     :query => 'User.where("name = \'#{params[:name]}\' AND password = \'#{params[:password]}\'").first',
     :input => {:name => :name, :example => "') OR 1--"},
     :example => 'The example below is using classic SQL injection to bypass authentication.',
@@ -266,7 +266,7 @@ The `where` method can be passed a straight SQL string. Calls using a hash of na
   {
     :action => :update_all_order_option,
     :name => "Update All Order Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-update_all",
+    :link => "http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-update_all",
     :query => 'User.update_all("admin = 1", "name LIKE \'B%\'" , { :order => params[:order] })',
     :input => {:name => :order, :example => 'name) OR 1=1;'},
     :example => "Since the query is encasing the `IN` clause in parentheses, we can easily close that clause with a parenthesis and append almost any SQL.",
