@@ -226,7 +226,7 @@ The `where` method can be passed a straight SQL string. Calls using a hash of na
   {
     :action => :update_all_method,
     :name => "Update All Method",
-    :link => "http://api.rubyonrails.org/v3.2.16/classes/ActiveRecord/Relation.html#method-i-update_all",
+    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-update_all",
     :query => 'User.update_all("admin = 1 WHERE name LIKE \'%#{params[:name]}%\'")',
     :input => {:name => :name, :example => '\' OR 1=1;'},
     :example => "Update every user to be an admin.",
