@@ -104,7 +104,7 @@ This query will always return true. To be be safe, convert user input to a strin
     :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find_by",
     :query => 'User.find_by params[:id]',
     :input => {:name => :id, :example => "admin = 't'"},
-    :example => 'Passing ',
+    :example => 'This will find users who are admins.',
     :desc => <<-MD
 Added in Rails 4, the `find_by`/`find_by!` methods are simply calling `where(*args).take`, so all the options for `where` also apply.
 
