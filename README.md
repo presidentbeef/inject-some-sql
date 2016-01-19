@@ -1,16 +1,26 @@
 ## Inject Some SQL
 
-This is a sample Rails application for demonstrating many ways SQL can be injected in Rails.
+These are sample Rails applications for demonstrating many ways SQL can be injected in Rails.
 
 ### Setup
 
-Clone the repo, install the dependencies, and setup the database:
+Clone the repo:
 
 ```
 git clone https://github.com/presidentbeef/inject-some-sql.git
-cd inject-some-sql
+```
+
+Pick either Rails 3 or Rails 4. They each have their own subdirectory.
+
+```
+cd inject-some-sql/rails4
+```
+
+In the subdirectory, install dependences and set up the database:
+
+```
 bundle install
-rake db:migrate db:seed
+rake db:setup db:seed
 ```
 
 ### Run
