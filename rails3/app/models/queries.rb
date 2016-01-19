@@ -106,6 +106,8 @@ This query will always return true. To be be safe, convert user input to a strin
     :input => {:name => :name, :example => "name=') OR admin = 't' --"},
     :example => "This is just a tiny example of what can be done with interpolation in conditions. Here we return the first user with the admin flag set.",
     :desc => <<-MD
+*This method was deprecated in Rails 4.0 and removed in Rails 4.1.*
+
 The `find` method is a very general and commonly-used query method. The first argument to `find` is either an integer ID, `:all`, `:first`, or `:last`. The last argument is an options hash. The options accepted by `find` are often used in other methods as well.
 
 The first argument to `find` *will* be escaped.
