@@ -27,7 +27,7 @@ Calculation methods:
   {
     :action => :delete_all,
     :name => "Delete All Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-delete_all",
+    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Associations/CollectionProxy.html#method-i-delete_all",
     :query => 'User.delete_all("id = #{params[:id]}")',
     :input => {:name => :id, :example => '1) OR 1=1--'},
     :example => "This example bypasses any conditions and deletes all users.",
@@ -45,7 +45,7 @@ Never pass user input directly to `delete_all`.
   {
     :action => :destroy_all,
     :name => "Destroy All Method",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-destroy_all",
+    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Associations/CollectionProxy.html#method-i-destroy_all",
     :query => 'User.destroy_all(["id = ? AND admin = \'#{params[:admin]}", params[:id]])',
     :input => {:name => :admin, :example => "') OR 1=1--'"},
     :example => "This example bypasses any conditions and deletes all users.
@@ -106,7 +106,7 @@ This query will always return true. To be be safe, convert user input to a strin
     :input => {:name => :name, :example => "name=') OR admin = 't' --"},
     :example => "This is just a tiny example of what can be done with interpolation in conditions. Here we return the first user with the admin flag set.",
     :desc => <<-MD
-This vulnerable version of `find` is deprecated in Rails 4.0.0 and removed in Rails 4.1.0.
+*This vulnerable version of `find` is deprecated in Rails 4.0.0 and removed in Rails 4.1.0.*
 
 The first argument to `find` is either an integer ID, `:all`, `:first`, or `:last`. The last argument is an options hash. The options accepted by `find` are often used in other methods as well.
 
@@ -146,27 +146,25 @@ The safest (and most common) use of these methods is to pass in a hash table.
   },
 
   {
-    :action => :from_option,
-    :name => "From Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => "User.all(:from => params[:from], :conditions => { :admin => :false })",
+    :action => :from_method,
+    :name => "From Method",
+    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-from",
+    :query => "User.from(params[:from])",
     :input => {:name => :from, :example => "users WHERE admin = 't';"},
     :example => "Instead of returning all non-admin users, we return all admin users.",
     :desc => <<-MD
-The `:from` option, used in any method that accepts `find`-style query options, does not escape its input.
-
-User input in `:from` options is likely rare.
+The `from` method accepts arbitrary SQL.
     MD
   },
 
   {
-    :action => :group_option,
-    :name => "Group Option",
+    :action => :group_method,
+    :name => "Group Method",
     :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => "User.find(:all, :group => params[:group], :conditions => { :admin => false })",
+    :query => "User.where(:admin => false).group(params[:group])",
     :input => {:name => :group, :example => "name UNION SELECT * FROM users"},
     :example => "The intent of this query is to group non-admin users by the specified column. Instead, the query returns all users.",
-    :desc => "The `:group` option for queries is unescaped."
+    :desc => "The `group` method accepts arbitrary SQL strings."
   },
 
   {
@@ -179,21 +177,12 @@ User input in `:from` options is likely rare.
     :desc => "The `having` method does not escape its input and is easy to use for SQL injection since it tends to be at the end of a query."
   },
 
-  {
-    :action => :having_option,
-    :name => "Having Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => 'Order.all(:conditions => { :user_id => 1 }, :group => :user_id, :having => "total > #{params[:total]}")',
-    :input => {:name => :total, :example => "1 UNION SELECT * FROM orders"},
-    :example => "This input injects a union in order to return all orders, instead of just the orders from a single user.",
-    :desc => "Like the method, the `:having` option does not escape its input and is easy to use for SQL injection since it tends to be at the end of a query."
-  },
 
   {
     :action => :joins,
     :name => "Joins Method",
     :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-joins",
-    :query => 'Order.where(:user_id => 1).joins(params[:table])',
+    :query => 'Order.joins(params[:table])',
     :input => {:name => :table, :example => "--"},
     :example => 'Skip WHERE clause and return all orders instead of just the orders for the specified user.',
     :desc => 'The `joins` method can take an array of associations or straight SQL strings.'
@@ -222,16 +211,6 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
   },
 
   {
-    :action => :order_option,
-    :name => 'Order Option',
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => 'User.all(:order => "name #{params[:sort]}")',
-    :input => {:name => :sort, :example => ',8'},
-    :example => 'Since `ORDER BY` clauses can accept a column index, they can be used to determine the number of columns in the table. The index can be incremented until the query returns an error.',
-    :desc => 'The `:order` option, like the method, will accept any SQL string.'
-  },
-
-  {
     :action => :pluck,
     :name => "Pluck Method",
     :link => "http://api.rubyonrails.org/classes/ActiveRecord/Calculations.html#method-i-pluck",
@@ -256,10 +235,10 @@ However, the return result will still be an array of values from a single column
   },
 
   {
-    :action => :select_option,
-    :name => 'Select Option',
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => 'User.first(:conditions => { :name => params[:name], :password => params[:password] }, :select => params[:column])',
+    :action => :select_method,
+    :name => 'Select Method',
+    :link => "http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-select",
+    :query => 'User.select(params[:column])',
     :input => {:name => :column, :example => "* FROM users WHERE admin = 't' ;"},
     :example => 'Since the `SELECT` clause is at the beginning of the query, nearly any SQL can be injected.',
    :desc => 'The `:select` option allows complete control over the `SELECT` clause of the query.'
@@ -273,17 +252,21 @@ However, the return result will still be an array of values from a single column
     :input => {:name => :name, :example => "') OR 1--"},
     :example => 'The example below is using classic SQL injection to bypass authentication.',
     :desc => <<-MD
-The `where` method can be passed a straight SQL string. Calls using a hash of name-value pairs are escaped, and the array form can be used for safely parameterizing queries as with the `find` method.
+The `where` method can be passed a straight SQL string. Calls using a hash of name-value pairs are escaped, and the array form can be used for safely parameterizing queries.
      MD
   },
 
   {
-    :action => :update_all_order_option,
-    :name => "Update All Order Option",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-update_all",
-    :query => 'User.update_all("admin = 1", "name LIKE \'B%\'" , { :order => params[:order] })',
-    :input => {:name => :order, :example => 'name) OR 1=1;'},
-    :example => "Since the query is encasing the `IN` clause in parentheses, we can easily close that clause with a parenthesis and append almost any SQL.",
-    :desc => "The `update_all` method accepts two options: `:order` and `:limit`. `:limit` is cast to an integer and is safe from injection. The `:order` option, however, will accept any SQL string."
+    :action => :update_all_method,
+    :name => "Update All Method",
+    :link => "http://api.rubyonrails.org/v3.2.16/classes/ActiveRecord/Relation.html#method-i-update_all",
+    :query => 'User.update_all("admin = 1 WHERE name LIKE \'%#{params[:name]}%\'")',
+    :input => {:name => :name, :example => '\' OR 1=1;'},
+    :example => "Update every user to be an admin.",
+    :desc => <<-MD
+Like `delete_all`, `update_all` accepts any SQL as a string.
+
+User input should never be passed directly to `update_all`, only as values in a hash table.
+    MD
   },
 ]
