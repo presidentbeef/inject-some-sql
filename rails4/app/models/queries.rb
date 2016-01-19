@@ -99,39 +99,6 @@ This query will always return true. To be be safe, convert user input to a strin
   },
 
   {
-    :action => :find,
-    :name => "Find Methods",
-    :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find",
-    :query => 'User.find(:first, :conditions => "name = \'#{params[:name]}\'")',
-    :input => {:name => :name, :example => "name=') OR admin = 't' --"},
-    :example => "This is just a tiny example of what can be done with interpolation in conditions. Here we return the first user with the admin flag set.",
-    :desc => <<-MD
-*This vulnerable version of `find` is deprecated in Rails 4.0.0 and removed in Rails 4.1.0.*
-
-The first argument to `find` is either an integer ID, `:all`, `:first`, or `:last`. The last argument is an options hash. The options accepted by `find` are often used in other methods as well.
-
-The first argument to `find` *will* be escaped.
-
-Options:
-
-* `:conditions` - Can be a string, an array, or a hash. If a string, it will be passed to the database unchanged. If an array, the first element is a string and the remaining elements are values to interpolate into the string. The values will be sanitized, but the string element will not. If a hash is given, the keys and values will be properly sanitized.
-* `:order` - Unsanitized SQL string for `ORDER BY` clause.
-* `:group` - Unsanitized SQL string for `GROUP BY` clause.
-* `:having` - Unsanitized SQL string for `HAVING` clause.
-* `:limit` - Will be converted to an integer.
-* `:offset` - Will be converted to an integer.
-* `:joins` - Accepts SQL string, which is not sanitized. Also accepts named associations or an array containing both strings and named associations.
-* `:include` - Only accepts named associations.
-* `:select` - Unsanitized SQL string `SELECT` clause.
-* `:from` - Unsanitized SQL string.
-* `:readonly` - Boolean value
-* `:lock` - Unsanitized SQL string. May be ignored in databases that do not support locks. Also accepts a boolean.
-
-For more information, see [the ActiveRecord docs](http://api.rubyonrails.org/v3.2.22/classes/ActiveRecord/Base.html).
-  MD
-  },
-
-  {
     :action => :find_by,
     :name => "Find By Method",
     :link => "http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find_by",
