@@ -27,7 +27,7 @@ Calculation methods:
   {
     :action => :delete_all,
     :name => "Delete All Method",
-    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/Associations/CollectionProxy.html#method-i-delete_all",
+    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/Relation.html#method-i-delete_all",
     :query => 'User.delete_all("id = #{params[:id]}")',
     :input => {:name => :id, :example => '1) OR 1=1--'},
     :example => "This example bypasses any conditions and deletes all users.",
@@ -45,7 +45,7 @@ Never pass user input directly to `delete_all`.
   {
     :action => :destroy_all,
     :name => "Destroy All Method",
-    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/Associations/CollectionProxy.html#method-i-destroy_all",
+    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/Relation.html#method-i-destroy_all",
     :query => 'User.destroy_all(["id = ? AND admin = \'#{params[:admin]}", params[:id]])',
     :input => {:name => :admin, :example => "') OR 1=1--'"},
     :example => "This example bypasses any conditions and deletes all users.
@@ -127,7 +127,7 @@ The `from` method accepts arbitrary SQL.
   {
     :action => :group_method,
     :name => "Group Method",
-    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/FinderMethods.html#method-i-find",
+    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-group",
     :query => "User.where(:admin => false).group(params[:group])",
     :input => {:name => :group, :example => "name UNION SELECT * FROM users"},
     :example => "The intent of this query is to group non-admin users by the specified column. Instead, the query returns all users.",
@@ -137,7 +137,7 @@ The `from` method accepts arbitrary SQL.
   {
     :action => :having,
     :name => "Having Method",
-    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-from",
+    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-having",
     :query => 'Order.where(:user_id => 1).group(:user_id).having("total > #{params[:total]}")',
     :input => {:name => :total, :example => "1 UNION SELECT * FROM orders"},
     :example => "This input injects a union in order to return all orders, instead of just the orders from a single user.",
