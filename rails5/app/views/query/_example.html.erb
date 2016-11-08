@@ -1,0 +1,35 @@
+<div id="<%= query[:action] %>">
+  <div>
+    <p class="pull-right">
+      <a href="<%= query[:link] %>">Documentation <i class="icon-share"></i></a>
+    </p>
+  </div>
+
+  <h3><%= query[:name] || query[:action] %></h3>
+
+  <div>
+    <%= md query[:desc] if query[:desc] %>
+  </div>
+
+  <h4>Example</h4>
+  <p>
+    <%= md query[:example] if query[:example] %>
+  </p>
+
+  <div style="margin-bottom: 4px">
+      <pre>
+<%= ruby_color "params[:#{query[:input][:name]}] = #{query[:input][:example].inspect}" %>
+<%= ruby_color query[:query] %></pre>
+  </div>
+
+  <div class="result well">
+    <strong>Query</strong>
+    <div>
+      <%= sql_color query[:sql] %>
+    </div>
+    <strong>Result</strong>
+    <div>
+      <%= query[:result] %>
+    </div>
+  </div>
+</div>

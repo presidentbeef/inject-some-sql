@@ -1,0 +1,17 @@
+<div class="alert alert-error">
+  <% if @sql %>
+    <div>
+      <strong>Query</strong>
+      <div>
+        <%= @sql %>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <strong>Error</strong>
+    <div>
+      <%= @error %>
+    </div>
+  </div>
+</div>
