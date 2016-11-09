@@ -1,5 +1,5 @@
 class QueryController < ApplicationController
-  after_filter :reset_database, :except => [:index, :examples]
+  after_action :reset_database, :except => [:index, :examples]
 
   def index
     @queries = Queries
