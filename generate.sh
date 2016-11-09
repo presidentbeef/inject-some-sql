@@ -49,6 +49,7 @@ rvm default@iss do gem install bundler
 cd rails5
 rvm default@iss do bundle install
 rvm default@iss do bundle exec rails assets:precompile
+rvm default@iss do rails db:environment:set RAILS_ENV=production
 rvm default@iss do bundle exec rails db:reset
 rvm default@iss do bundle exec rails db:setup
 rvm default@iss do bundle exec rails s &
