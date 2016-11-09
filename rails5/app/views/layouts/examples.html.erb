@@ -17,21 +17,22 @@
         </a>
         <a class="brand" href="#">Rails SQL Injection</a>
         <div class="nav-collapse">
-          <ul class="nav">
-          <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
+          <ul class="nav pull-right">
+            <li><a href="/rails3">Rails 3</a></li>
+            <li><a href="/rails4">Rails 4</a></li>
+            <li class="active"><a href="">Rails 5</a></li>
+            <li><a href="#resources">More Resources</a></li>
+          </ul>
+
+          <ul class="nav pull-right" style="padding-right: 15px">
+            <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
               <option value="#overview">Overview</option>
-            <% @queries.each do |q| %>
-              <option value="#<%= q[:action] %>"><%= q[:name] %></option>
+              <% @queries.each do |q| %>
+                <option value="#<%= q[:action] %>"><%= q[:name] %></option>
             <% end %>
-          </select>
-        </ul>
+            </select>
+          </ul>
         </div>
-        <span class="pull-right" style="padding-top: 9px">
-          <a href="/rails3">Rails 3</a> |
-          <a href="/rails4">Rails 4</a> |
-          Rails 5 |
-          <a href="#resources">More Resources</a>
-        </span>
       </div>
     </div>
   </div>
