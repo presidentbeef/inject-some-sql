@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>Rails SQL Injection Examples</title>
-  <link href="/assets/application-bf55474c4c2dee12c349c3085f4ae7c8.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/assets/application-9431ac8bbbcfaa1062d59b879dc6cceb.css" media="all" rel="stylesheet" type="text/css" />
   <script src="/assets/application-5590d2132eb2452c01cc8a5d92358661.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-<meta content="CrN2NnujtYoMDyUogtNKLq0M6iWnzDyTIyouhkr0NvQ=" name="csrf-token" />
+<meta content="tSDHYs2kfANOFOvRk4N9Xb2rhPB6+PgvLYsQiad7ImQ=" name="csrf-token" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -18,35 +18,38 @@
         </a>
         <a class="brand" href="#">Rails SQL Injection</a>
         <div class="nav-collapse">
-          <ul class="nav">
-          <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
+          <ul class="nav pull-right">
+            <li class="active"><a href="/rails3">Rails 3</a></li>
+            <li><a href="/rails4">Rails 4</a></li>
+            <li><a href="/rails5">Rails 5</a></li>
+            <li><a href="#resources">More Resources</a></li>
+          </ul>
+
+          <ul class="nav pull-right" style="padding-right: 15px">
+            <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
               <option value="#overview">Overview</option>
-              <option value="#calculate">Calculate Methods</option>
-              <option value="#delete_all">Delete All Method</option>
-              <option value="#destroy_all">Destroy All Method</option>
-              <option value="#exists">Exists? Method</option>
-              <option value="#find">Find Methods</option>
-              <option value="#from_option">From Option</option>
-              <option value="#group_option">Group Option</option>
-              <option value="#having">Having Method</option>
-              <option value="#having_option">Having Option</option>
-              <option value="#joins">Joins Method</option>
-              <option value="#lock">Lock Method and Option</option>
-              <option value="#order">Order Method</option>
-              <option value="#order_option">Order Option</option>
-              <option value="#pluck">Pluck Method</option>
-              <option value="#reorder">Reorder Method</option>
-              <option value="#select_option">Select Option</option>
-              <option value="#where">Where Method</option>
-              <option value="#update_all_order_option">Update All Order Option</option>
-          </select>
-        </ul>
+                <option value="#calculate">Calculate Methods</option>
+                <option value="#delete_all">Delete All Method</option>
+                <option value="#destroy_all">Destroy All Method</option>
+                <option value="#exists">Exists? Method</option>
+                <option value="#find">Find Methods</option>
+                <option value="#from_option">From Option</option>
+                <option value="#group_option">Group Option</option>
+                <option value="#having">Having Method</option>
+                <option value="#having_option">Having Option</option>
+                <option value="#joins">Joins Method</option>
+                <option value="#lock">Lock Method and Option</option>
+                <option value="#order">Order Method</option>
+                <option value="#order_option">Order Option</option>
+                <option value="#pluck">Pluck Method</option>
+                <option value="#reorder">Reorder Method</option>
+                <option value="#select_option">Select Option</option>
+                <option value="#where">Where Method</option>
+                <option value="#update_all_order_option">Update All Order Option</option>
+            </select>
+          </ul>
         </div>
-        <span class="pull-right" style="padding-top: 9px">
-          Rails 3 |
-          <a href="/rails4">Rails 4</a> |
-          <a href="#resources">More Resources</a>
-        </span>
+
       </div>
     </div>
   </div>
@@ -125,7 +128,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      68
+      46
     </div>
   </div>
 </div>
@@ -227,7 +230,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 48, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 61, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 40, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 39, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 71, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 51, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 49, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 37, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 61, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 62, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 19, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -359,7 +362,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 42, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 62, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;
     </div>
   </div>
 </div>
@@ -403,7 +406,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 34, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 65, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -445,7 +448,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 45, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 27, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 40, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 18, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 37, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 39, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 34, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 68, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 27, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 22, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -487,7 +490,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -529,7 +532,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -571,7 +574,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 28, user_id: 1, total: 10, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 29, user_id: 3, total: 500, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;Order id: 30, user_id: 4, total: 1, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;Order id: 28, user_id: 1, total: 10, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 29, user_id: 3, total: 500, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;Order id: 30, user_id: 4, total: 1, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -613,7 +616,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 19, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 42, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 56, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 57, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 61, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 28, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 54, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 73, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 54, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 70, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 30, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -655,7 +658,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 53, admin: true, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 75, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 49, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 48, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 29, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 29, admin: false, created_at: &quot;2016-01-19 16:11:25&quot;, updated_at: &quot;2016-01-19 16:11:25&quot;&gt;]
+      [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 55, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 24, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 44, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 65, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 47, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 34, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;]
     </div>
   </div>
 </div>
@@ -825,7 +828,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 19, admin: true, created_at: &quot;2016-01-19 16:11:26&quot;, updated_at: &quot;2016-01-19 16:11:26&quot;&gt;
+      #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 52, admin: true, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;
     </div>
   </div>
 </div>
@@ -867,7 +870,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 97, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 73, admin: false, created_at: &quot;2016-01-19 16:11:26&quot;, updated_at: &quot;2016-01-19 16:11:26&quot;&gt;
+      #&lt;User id: 97, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 43, admin: false, created_at: &quot;2016-11-10 01:43:40&quot;, updated_at: &quot;2016-11-10 01:43:40&quot;&gt;
     </div>
   </div>
 </div>
@@ -923,28 +926,16 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="container" id="resources" style="padding-bottom:80px">
     <h2>More Resources</h2>
     <ul>
-      <li><a href="http://blog.codeclimate.com/blog/2013/03/27/rails-insecure-defaults/">Insecure Defaults in Rails</a></li>
       <li><a href="http://guides.rubyonrails.org/security.html">Official Rails Security Guide</a></li>
       <li><a href="https://www.owasp.org/index.php/Ruby_on_Rails_Cheatsheet">OWASP Rails Cheatsheet</a></li>
       <li><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-security">Rails Security Mailing List</a></li>
-      <li><a href="http://brakemanscanner.org">Brakeman - Static Analysis Security Tool for Rails</a></li>
       <li><a href="https://github.com/twitter/secureheaders#readme">Secure Headers Gem</a></li>
-      <li><a href="https://codeclimate.com/security-monitor">Code Climate Security Monitor</a></li>
+      <li><a href="http://brakemanscanner.org">Brakeman - Static Analysis Security Tool for Rails</a></li>
+      <li><a href="https://brakemanpro.com">Brakeman Pro</a></li>
     </ul>
     <p>
       This site is also available as a Rails application. To interact with this site dynamically and try out different SQL injection attacks you can <a href="https://github.com/presidentbeef/inject-some-sql">clone the code</a> and run it locally. Contributions and corrections are welcome!
     </p>
   </div>
 </body>
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-20920647-4']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-               })();
-</script>
 </html>
