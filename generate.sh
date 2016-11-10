@@ -43,16 +43,17 @@ rm -rf localhost\:3000
 cd ..
 
 echo "NOW RAILS 5"
-
+export DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 rvm --force default@iss gemset empty
 rvm default@iss do gem install bundler
 cd rails5
 rvm default@iss do bundle install
-rvm default@iss do bundle exec rails assets:precompile
-rvm default@iss do rails db:environment:set RAILS_ENV=production
-rvm default@iss do bundle exec rails db:reset
-rvm default@iss do bundle exec rails db:setup
-rvm default@iss do bundle exec rails s &
+RAILS_ENV=production rvm default@iss do bundle exec rails assets:clobber
+RAILS_ENV=production rvm default@iss do bundle exec rails assets:precompile
+RAILS_ENV=production rvm default@iss do rails db:environment:set RAILS_ENV=production
+RAILS_ENV=production rvm default@iss do bundle exec rails db:reset
+RAILS_ENV=production rvm default@iss do bundle exec rails db:setup
+RAILS_ENV=production rvm default@iss do bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples
 kill %1
