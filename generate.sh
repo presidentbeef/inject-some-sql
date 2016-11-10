@@ -69,6 +69,6 @@ rm -rf assets
 mv tmp/* .
 rm -rf tmp
 
-git add rails3.html rails4.html rails5.html assets/
+git add index.html rails3.html rails4.html rails5.html assets/
 echo "To deploy, add GA then:"
 echo "git add rails4.html rails3.html index.html && git commit && git push"
