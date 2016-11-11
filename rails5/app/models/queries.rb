@@ -116,8 +116,8 @@ The safest (and most common) use of these methods is to pass in a hash table.
     :action => :from_method,
     :name => "From Method",
     :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-from",
-    :query => "User.from(params[:from])",
-    :input => {:name => :from, :example => "users WHERE admin = 't';"},
+    :query => "User.from(params[:from]).where(admin: false)",
+    :input => {:name => :from, :example => "users WHERE admin = 't' OR 1=?;"},
     :example => "Instead of returning all non-admin users, we return all admin users.",
     :desc => <<-MD
 The `from` method accepts arbitrary SQL.
