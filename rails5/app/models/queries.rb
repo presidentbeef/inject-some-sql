@@ -139,7 +139,7 @@ The `from` method accepts arbitrary SQL.
     :name => "Having Method",
     :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-having",
     :query => 'Order.where(:user_id => 1).group(:user_id).having("total > #{params[:total]}")',
-    :input => {:name => :total, :example => "1 UNION SELECT * FROM orders"},
+    :input => {:name => :total, :example => "1) UNION SELECT * FROM orders--"},
     :example => "This input injects a union in order to return all orders, instead of just the orders from a single user.",
     :desc => "The `having` method does not escape its input and is easy to use for SQL injection since it tends to be at the end of a query."
   },
