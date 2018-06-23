@@ -168,6 +168,18 @@ The `lock` method and the `:lock` option for `find` and related methods accepts 
   },
 
   {
+    :action => :not,
+    :name => "Not Method",
+    :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods/WhereChain.html#method-i-not",
+    :query => 'User.where.not("admin = 1 OR id IN (#{params[:excluded]})")',
+    :input => {:name => :excluded, :example => "))) OR 1=1 --"},
+    :example => "Return all users, even if they are administrators.",
+    :desc => <<-MD
+The `not` method is equivalent to `where` and is equally unsafe when passed SQL strings directly.
+    MD
+  },
+
+  {
     :action => :order,
     :name => 'Order Method',
     :link => "http://api.rubyonrails.org/v5.0.0.1/classes/ActiveRecord/QueryMethods.html#method-i-order",
