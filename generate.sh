@@ -5,17 +5,18 @@ set -e
 rm -rf tmp/
 mkdir tmp
 mkdir tmp/assets
-rvm default gemset create iss
 export RAILS_ENV=production
+export USE_RUBY=2.3.0
+rvm $USE_RUBY gemset create iss
 
-rvm --force default@iss gemset empty
-rvm default@iss do gem install bundler
+rvm --force $USE_RUBY@iss gemset empty
+rvm $USE_RUBY@iss do gem install bundler
 cd rails3
-rvm default@iss do bundle install
-rvm default@iss do bundle exec rake assets:precompile
-rvm default@iss do bundle exec rake db:reset
-rvm default@iss do bundle exec rake db:setup
-rvm default@iss do bundle exec rails s &
+rvm $USE_RUBY@iss do bundle install
+rvm $USE_RUBY@iss do bundle exec rake assets:precompile
+rvm $USE_RUBY@iss do bundle exec rake db:reset
+rvm $USE_RUBY@iss do bundle exec rake db:setup
+rvm $USE_RUBY@iss do bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples
 kill %1
@@ -26,14 +27,14 @@ cd ..
 
 echo "NOW RAILS 4"
 
-rvm --force default@iss gemset empty
-rvm default@iss do gem install bundler
+rvm --force $USE_RUBY@iss gemset empty
+rvm $USE_RUBY@iss do gem install bundler
 cd rails4
-rvm default@iss do bundle install
-rvm default@iss do bundle exec rake assets:precompile
-rvm default@iss do bundle exec rake db:reset
-rvm default@iss do bundle exec rake db:setup
-rvm default@iss do bundle exec rails s &
+rvm $USE_RUBY@iss do bundle install
+rvm $USE_RUBY@iss do bundle exec rake assets:precompile
+rvm $USE_RUBY@iss do bundle exec rake db:reset
+rvm $USE_RUBY@iss do bundle exec rake db:setup
+rvm $USE_RUBY@iss do bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples
 kill %1
@@ -44,16 +45,16 @@ cd ..
 
 echo "NOW RAILS 5"
 export DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-rvm --force default@iss gemset empty
-rvm default@iss do gem install bundler
+rvm --force $USE_RUBY@iss gemset empty
+rvm $USE_RUBY@iss do gem install bundler
 cd rails5
-rvm default@iss do bundle install
-RAILS_ENV=production rvm default@iss do bundle exec rails assets:clobber
-RAILS_ENV=production rvm default@iss do bundle exec rails assets:precompile
-RAILS_ENV=production rvm default@iss do rails db:environment:set RAILS_ENV=production
-RAILS_ENV=production rvm default@iss do bundle exec rails db:reset
-RAILS_ENV=production rvm default@iss do bundle exec rails db:setup
-RAILS_ENV=production rvm default@iss do bundle exec rails s &
+rvm $USE_RUBY@iss do bundle install
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails assets:clobber
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails assets:precompile
+RAILS_ENV=production rvm $USE_RUBY@iss do rails db:environment:set RAILS_ENV=production
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails db:reset
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails db:setup
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples
 kill %1
