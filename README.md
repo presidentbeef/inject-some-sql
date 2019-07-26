@@ -10,10 +10,10 @@ Clone the repo:
 git clone https://github.com/presidentbeef/inject-some-sql.git
 ```
 
-Pick either Rails 3 or Rails 4. They each have their own subdirectory.
+Pick either Rails 5, Rails 4 or Rails 3. They each have their own subdirectory.
 
 ```
-cd inject-some-sql/rails4
+cd inject-some-sql/rails5
 ```
 
 In the subdirectory, install dependences and set up the database:
