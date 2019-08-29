@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="/assets/application-0a0b7b8652e5d2c44acc8cc81f80e5eaf4611d3cb66915d58debd0d99f242e56.css" />
   <script src="/assets/application-04c818270d2e566eeb2b1affec6ee9c66d63c7db250b40b2667fce173bc7c377.js"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="L43wZcWcZRrbQCkuronh9kEWdulSZewOAM0yfmThxThcezPc8oXkglamj0Z8C+V2AJA2Dc7rgofz92BqYNUv5w==" />
+<meta name="csrf-token" content="5Zmx1NFn46REr3OzwdtJnyyU4hzBbDjJ1B9yYOMMNUaVDtJNMG+WIfqwFJZSzE0PSXyWQ0tJxduvn9nW+G0qIQ==" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -69,7 +69,7 @@ This list is in no way exhaustive or complete! Please feel free to <a href="http
 </p>
 <h3>Examples</h3>
 <p>
-Each method or option described below is accompanied by an example demonstrating how the ActiveRecord interface could be exploited if used unsafely. These are not necessarily the <em>worst</em> exploits, they represent just a small hint of what could be accomplished if one is not careful. The examples on this page were tested with <b>Rails 5.0.0.1</b> and SQLite 3.
+Each method or option described below is accompanied by an example demonstrating how the ActiveRecord interface could be exploited if used unsafely. These are not necessarily the <em>worst</em> exploits, they represent just a small hint of what could be accomplished if one is not careful. The examples on this page were tested with <b>Rails 5.0.7</b> and SQLite 3.
 </p>
 <h3>Interactive Version</h3>
 <p>
@@ -81,7 +81,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
       <div id="calculate">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/Calculations.html#method-i-calculate">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/Calculations.html#method-i-calculate">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -127,7 +127,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      30
+      55
     </div>
   </div>
 </div>
@@ -139,7 +139,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
       <div id="delete_all">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/Relation.html#method-i-delete_all">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/Relation.html#method-i-delete_all">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -187,7 +187,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
       <div id="destroy_all">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/Relation.html#method-i-destroy_all">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/Relation.html#method-i-destroy_all">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -229,7 +229,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 72, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 63, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 77, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 58, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 43, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 55, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 37, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 72, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 54, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 42, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 49, admin: true, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;]
     </div>
   </div>
 </div>
@@ -241,7 +241,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="exists">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -305,7 +305,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="find_by">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/FinderMethods.html#method-i-find_by">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/FinderMethods.html#method-i-find_by">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -337,7 +337,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 36, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 27, admin: true, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;
     </div>
   </div>
 </div>
@@ -349,7 +349,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="from_method">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-from">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-from">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -379,7 +379,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 55, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 19, admin: true, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -391,7 +391,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="group_method">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-group">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-group">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -421,7 +421,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 58, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 44, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 41, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 21, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 62, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 71, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 77, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 21, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 56, admin: false, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 24, admin: true, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -433,7 +433,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="having">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-having">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-having">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -463,7 +463,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2019-08-29 19:46:09&quot;, updated_at: &quot;2019-08-29 19:46:09&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -475,7 +475,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="joins">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-joins">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-joins">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -505,7 +505,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -517,7 +517,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="lock">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-lock">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-lock">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -547,7 +547,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 27, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 76, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 20, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 39, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 31, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 62, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 61, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 70, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 37, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 68, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 75, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 23, admin: true, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -559,7 +559,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="not">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods/WhereChain.html#method-i-not">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods/WhereChain.html#method-i-not">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -589,7 +589,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 59, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 25, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 25, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 38, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 41, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 20, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 74, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 23, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 68, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 19, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 23, admin: true, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -601,7 +601,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="order">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-order">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-order">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -631,7 +631,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 39, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 61, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 28, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 18, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 33, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 33, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 51, admin: true, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 18, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 65, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 75, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 74, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 43, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -643,7 +643,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="pluck">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/Calculations.html#method-i-pluck">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/Calculations.html#method-i-pluck">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -687,7 +687,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="reorder">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-reorder">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-reorder">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -729,7 +729,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="select_method">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-select">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-select">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -759,7 +759,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 62, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 36, admin: true, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -771,7 +771,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="where">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/QueryMethods.html#method-i-where">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/QueryMethods.html#method-i-where">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
@@ -801,7 +801,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 55, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 67, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 51, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 26, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 77, admin: false, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 52, admin: true, created_at: &quot;2019-08-29 18:51:48&quot;, updated_at: &quot;2019-08-29 18:51:48&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 40, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 67, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 58, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 55, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 74, admin: false, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2019-08-29 19:46:10&quot;, updated_at: &quot;2019-08-29 19:46:10&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -813,7 +813,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
       <div id="update_all_method">
   <div>
     <p class="pull-right">
-      <a href="http://api.rubyonrails.org/v5.0.0/classes/ActiveRecord/Relation.html#method-i-update_all">Documentation <i class="icon-share"></i></a>
+      <a href="https://api.rubyonrails.org/v5.0.7/classes/ActiveRecord/Relation.html#method-i-update_all">Documentation <i class="icon-share"></i></a>
     </p>
   </div>
 
