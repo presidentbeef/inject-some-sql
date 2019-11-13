@@ -6,7 +6,8 @@ rm -rf tmp/
 mkdir tmp
 mkdir tmp/assets
 export RAILS_ENV=production
-export USE_RUBY=2.3.0
+export USE_RUBY=2.5.5
+rvm install $USE_RUBY
 rvm $USE_RUBY gemset create iss
 
 rvm --force $USE_RUBY@iss gemset empty
