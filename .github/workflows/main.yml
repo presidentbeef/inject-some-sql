@@ -8,10 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up Ruby 2.5
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.5.x
-    - name: Run build 
-      run: ./generate-github.sh
+      - name: Install sqlite
+        run: sudo apt-get install libsqlite3-dev
+      - uses: actions/checkout@v1
+      - name: Set up Ruby 2.5
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.x
+      - name: Run build
+        run: ./generate-github.sh
