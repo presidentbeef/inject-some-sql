@@ -1,6 +1,12 @@
 #!/bin/bash --login
 set -e -x
 
+rm -rf tmp/
+mkdir tmp
+mkdir tmp/assets
+
+export RAILS_ENV=production
+
 gem install bundler -v"1.17.3"
 
 cd rails3
