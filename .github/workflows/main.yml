@@ -14,6 +14,4 @@ jobs:
       with:
         ruby-version: 2.5.x
     - name: Run build 
-      run: |
-        ls
-        ./generate-github.sh 
+      run: ./generate-github.sh
