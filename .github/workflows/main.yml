@@ -14,8 +14,4 @@ jobs:
       with:
         ruby-version: 2.5.x
     - name: Run build 
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        cd $GITHUB_WORKSPACE
-        ./generate-github.sh 
+      run: generate-github.sh 
