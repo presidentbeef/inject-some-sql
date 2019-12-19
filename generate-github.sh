@@ -60,7 +60,7 @@ cp -rf localhost\:3000/assets/* ../tmp/assets/
 rm -rf localhost\:3000
 cd ..
 
-if [ $(git branch --show-current) == "master" ]
+if [ `git branch --show-current` == "master" ]
 then
   git reset --hard
   git checkout gh-pages
