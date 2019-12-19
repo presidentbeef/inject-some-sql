@@ -1,7 +1,7 @@
 #!/bin/bash --login
 set -e -x
 
-gem install bundler
+gem install bundler -v"1.17.3"
 
 cd rails3
 bundle install --jobs 4 --retry 3
