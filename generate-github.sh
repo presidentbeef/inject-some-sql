@@ -61,11 +61,10 @@ rm -rf localhost\:3000
 cd ..
 
 echo "Checking results"
-test -f index.html
-test -f rails3.html
-test -f rails4.html
-test -f rails5.html
-test -f rails6.html
+test -f tmp/index.html
+test -f tmp/rails3.html
+test -f tmp/rails4.html
+test -f tmp/rails5.html
 
 if [ ${GITHUB_REF##*/} = "master" ]
 then
