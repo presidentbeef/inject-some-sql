@@ -60,6 +60,13 @@ cp -rf localhost\:3000/assets/* ../tmp/assets/
 rm -rf localhost\:3000
 cd ..
 
+echo "Checking results"
+test -f index.html
+test -f rails3.html
+test -f rails4.html
+test -f rails5.html
+test -f rails6.html
+
 if [ ${GITHUB_REF##*/} = "master" ]
 then
   git reset --hard
