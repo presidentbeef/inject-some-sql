@@ -1,6 +1,11 @@
 #!/bin/bash --login
 set -e -x
 
+if [ ${GITHUB_REF##*/} = "gh-pages" ]
+then
+  exit
+fi
+
 rm -rf tmp/
 mkdir tmp
 mkdir tmp/assets
@@ -74,12 +79,17 @@ then
   mv tmp/* .
   rm -rf tmp
 
-  git add index.html rails3.html rails4.html rails5.html assets/
-  git commit -m "Automated build at $(date -u)"
-  git push origin gh-pages
+  git config --local user.email "action@github.com"
+  git config --local user.name "GitHub Action"
 
-  echo "Pushed to gh-pages to deploy"
+  git add index.html rails3.html rails4.html rails5.html assets/
+  git -c user.name="GitHub Actions" -c user.email="noreply@github.com" commit \
+          --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
+          -m "Automated build at $(date -u)"
+
+  git push https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${$GITHUB_REPOSITORY}.git gh-pages
+
+  echo "Pushed changes to site"
 else
   echo "Build appears to have succeeded"
 fi
-
