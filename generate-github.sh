@@ -87,7 +87,8 @@ then
           --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
           -m "Automated build at $(date -u)"
 
-  git push https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${$GITHUB_REPOSITORY}.git gh-pages
+  repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${$GITHUB_REPOSITORY}.git"
+  git push $repo gh-pages
 
   echo "Pushed changes to site"
 else
