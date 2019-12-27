@@ -18,4 +18,4 @@ jobs:
       - name: Run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./generate-github.sh
+        run: bash ./generate-github.sh

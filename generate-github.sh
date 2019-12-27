@@ -1,4 +1,4 @@
-#!/bin/bash --login
+#!/bin/bash
 set -e -x
 
 if [ ${GITHUB_REF##*/} = "gh-pages" ]
@@ -87,8 +87,8 @@ then
           --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
           -m "Automated build at $(date -u)"
 
-  repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${$GITHUB_REPOSITORY}.git"
-  git push $repo gh-pages
+  git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+  git push origin gh-pages
 
   echo "Pushed changes to site"
 else
