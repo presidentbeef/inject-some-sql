@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rails SQL Injection Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Rails SQL Injection</a>
+        <div class="nav-collapse">
+          <ul class="nav pull-right">
+            <li><a href="/rails3">Rails 3</a></li>
+            <li><a href="/rails4">Rails 4</a></li>
+            <li><a href="/rails5">Rails 5</a></li>
+            <li class="active"><a href="">Rails 6</a></li>
+            <li><a href="#resources">More Resources</a></li>
+          </ul>
+
+          <ul class="nav pull-right" style="padding-right: 15px">
+            <select onchange="window.scrollTo(0, $(this.value).offset().top - 50)" style="margin-top: 5px; margin-bottom: 0px;">
+              <option value="#overview">Overview</option>
+              <% @queries.each do |q| %>
+                <option value="#<%= q[:action] %>"><%= q[:name] %></option>
+            <% end %>
+            </select>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+  <hr>
+  <div class="container" id="resources" style="padding-bottom:80px">
+    <h2>More Resources</h2>
+    <p>
+    More information about Rails security:
+    </p>
+    <ul>
+      <li><a href="https://guides.rubyonrails.org/security.html">Official Rails Security Guide</a></li>
+      <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheatsheet.html">OWASP Rails Cheatsheet</a></li>
+      <li><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-security">Rails Security Mailing List</a></li>
+      <li><a href="https://github.com/twitter/secureheaders#readme">Secure Headers Gem</a></li>
+      <li><a href="http://brakemanscanner.org">Brakeman - Static Analysis Security Tool for Rails</a></li>
+    </ul>
+    <p>
+      This site is also available as a Rails application. To interact with this site dynamically and try out different SQL injection attacks you can <a href="https://github.com/presidentbeef/inject-some-sql">clone the code</a> and run it locally. Contributions and corrections are welcome!
+    </p>
+  </div>
+</body>
+</html>

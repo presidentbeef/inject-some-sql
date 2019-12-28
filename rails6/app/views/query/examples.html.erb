@@ -1,0 +1,30 @@
+<h2 id="overview">Overview</h2>
+<p>
+The <a href="http://rubyonrails.org/">Ruby on Rails</a> web framework provides a library called <a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord</a> which provides an abstraction for accessing databases.
+</p>
+<p>
+This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilites themselves, only potential misuses of the methods.
+</p>
+<p>
+Please use this list as a guide of what <em>not</em> to do.
+</p>
+<p>
+This list is in no way exhaustive or complete! Please feel free to <a href="https://github.com/presidentbeef/inject-some-sql">contribute</a>.
+</p>
+<h3>Examples</h3>
+<p>
+Each method or option described below is accompanied by an example demonstrating how the ActiveRecord interface could be exploited if used unsafely. These are not necessarily the <em>worst</em> exploits, they represent just a small hint of what could be accomplished if one is not careful. The examples on this page were tested with <b>Rails 5.0.7</b> and SQLite 3.
+</p>
+<h3>Interactive Version</h3>
+<p>
+Clone and run this site from <a href="https://github.com/presidentbeef/inject-some-sql">the git repo</a> to try out or modify the examples!
+</p>
+<table class="table">
+  <% @queries.each do |q| %>
+  <tr>
+    <td>
+      <%= render :partial => 'example', :locals => { :query => q } %>
+    </td>
+  </tr>
+  <% end %>
+</table>
