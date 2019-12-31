@@ -26,8 +26,6 @@ gem 'coderay', "~> 1.0.8"
 gem 'rdiscount'
 gem 'twitter-bootstrap-rails', '~>2.2.8'
 gem 'therubyracer', :platforms => :ruby
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
 # TODO Get rid of this?
 gem 'coffee-rails', '~> 5.0.0'
