@@ -178,7 +178,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
-  sqlite3
+  sqlite3 (~> 1.4, >= 1.4.2)
   therubyracer
   turbolinks
   twitter-bootstrap-rails (~> 2.2.8)
