@@ -25,13 +25,13 @@ rake db:setup db:seed
 
 ### Run
 
-Typical Rails start: 
+Typical Rails start:
 
 ```
 rails s
 ```
 
-Open up [localhost:3000](http://localhost:3000) in a browser. 
+Open up [localhost:3000](http://localhost:3000) in a browser.
 
 ### Reset Database
 
@@ -51,6 +51,23 @@ The site lists a whole bunch of ActiveRecord queries.
 Each query has input for a single parameter (although some queries may actually
 have more than one). A sample injection is provided. Clicking "Run!" will run
 the query shown.
+
+## Docker
+
+Alternatively, Docker can be used. Only available for Rails 5 for now.
+
+### Setup
+
+```
+cd inject-some-sql/rails5
+docker-compose build
+```
+
+### Run
+
+```
+docker-compose up
+```
 
 ## Adding/Modifying Queries
 
