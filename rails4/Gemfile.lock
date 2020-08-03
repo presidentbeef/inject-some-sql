@@ -36,6 +36,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
+    bigdecimal (1.4.4)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
@@ -160,6 +161,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bigdecimal (~> 1.4, >= 1.4.4)
   byebug
   coderay (~> 1.0.8)
   coffee-rails (~> 4.1.0)

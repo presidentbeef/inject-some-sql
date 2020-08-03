@@ -16,6 +16,8 @@ gem 'rdiscount'
 gem 'twitter-bootstrap-rails', '~>2.2.8'
 gem 'therubyracer', :platforms => :ruby
 
+gem 'bigdecimal', '~> 1.4', '>= 1.4.4'
+
 group :development, :test do
   gem 'byebug'
 end
