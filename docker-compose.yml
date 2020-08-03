@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  rails3:
+    build: rails3
+    ports:
+      - '3003:3000'
+  rails4:
+    build: rails4
+    ports:
+      - '3004:3000'
+  rails5:
+    build: rails5
+    ports:
+      - '3005:3000'
