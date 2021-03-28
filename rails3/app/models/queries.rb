@@ -50,7 +50,7 @@ Never pass user input directly to `delete_all`.
     :input => {:name => :admin, :example => "') OR 1=1--'"},
     :example => "This example bypasses any conditions and deletes all users.
 
-Because ActiveRecord needs to insantiate each object, this query is performed in a transaction.
+Because ActiveRecord needs to instantiate each object, this query is performed in a transaction.
 The SQL for selecting the records to delete (where the injection occurs) looks like this:
 
 <span class=\"CodeRay\"><span style=\"color:#B06;font-weight:bold\">SELECT</span> <span style=\"background-color:hsla(0,100%,50%,0.05)\"><span style=\"color:#710\">&quot;</span><span style=\"color:#D20\">users</span><span style=\"color:#710\">&quot;</span></span>.* <span style=\"color:#080;font-weight:bold\">FROM</span> <span style=\"background-color:hsla(0,100%,50%,0.05)\"><span style=\"color:#710\">&quot;</span><span style=\"color:#D20\">users</span><span style=\"color:#710\">&quot;</span></span> <span style=\"color:#080;font-weight:bold\">WHERE</span> (id = <span style=\"color:#069\">NULL</span> <span style=\"color:#080;font-weight:bold\">AND</span> admin = <span style=\"background-color:hsla(0,100%,50%,0.05)\"><span style=\"color:#710\">'</span><span style=\"color:#710\">'</span></span>) <span style=\"color:#080;font-weight:bold\">OR</span> <span style=\"color:#00D\">1</span>=<span style=\"color:#00D\">1</span><span style=\"color:#777\">--')</span></span>",
