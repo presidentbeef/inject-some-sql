@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="/assets/application-0a0b7b8652e5d2c44acc8cc81f80e5eaf4611d3cb66915d58debd0d99f242e56.css" />
   <script src="/assets/application-5348c7314289000cd1d8cc297800b619fcfd35ec5f1b81778a15a1381b96579c.js"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="UTXuOTzqNE2AT4Gh9+FO/IvrS2cY3kLIjjsOgb6mk6xkH0ZiEwVYKjSOmXSDSZtNom12T6gzpgSAz9Ldq4QBWg==" />
+<meta name="csrf-token" content="iWBESVVMtJI0SfbPIacMeKhW+fZIeFohE/7Z3TB3wjl5YU+jGO8wcvxJ+WTc7TO/wJ4twyo4KEe8PwKDov0tZA==" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -59,7 +59,7 @@
 The <a href="http://rubyonrails.org/">Ruby on Rails</a> web framework provides a library called <a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord</a> which provides an abstraction for accessing databases.
 </p>
 <p>
-This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilites themselves, only potential misuses of the methods.
+This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilities themselves, only potential misuses of the methods.
 </p>
 <p>
 Please use this list as a guide of what <em>not</em> to do.
@@ -127,7 +127,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      52
+      33
     </div>
   </div>
 </div>
@@ -209,7 +209,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
   <p>
     <p>This example bypasses any conditions and deletes all users.</p>
 
-<p>Because ActiveRecord needs to insantiate each object, this query is performed in a transaction.
+<p>Because ActiveRecord needs to instantiate each object, this query is performed in a transaction.
 The SQL for selecting the records to delete (where the injection occurs) looks like this:</p>
 
 <p><span class="CodeRay"><span style="color:#B06;font-weight:bold">SELECT</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span>.* <span style="color:#080;font-weight:bold">FROM</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">users</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">WHERE</span> (id = <span style="color:#069">NULL</span> <span style="color:#080;font-weight:bold">AND</span> admin = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">OR</span> <span style="color:#00D">1</span>=<span style="color:#00D">1</span><span style="color:#777">--')</span></span></p>
@@ -229,7 +229,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 39, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 48, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 53, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 72, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 31, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 72, admin: true, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 46, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 62, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 30, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 67, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 23, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;]
     </div>
   </div>
 </div>
@@ -337,7 +337,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 33, admin: true, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 33, admin: true, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;
     </div>
   </div>
 </div>
@@ -379,7 +379,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 32, admin: true, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 19, admin: true, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -421,7 +421,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 34, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 54, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 67, admin: false, created_at: &quot;2020-06-25 12:54:34&quot;, updated_at: &quot;2020-06-25 12:54:34&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 47, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 18, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 38, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 22, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 36, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 29, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 64, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 33, admin: false, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 48, admin: true, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -463,7 +463,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -505,7 +505,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2021-03-28 19:15:15&quot;, updated_at: &quot;2021-03-28 19:15:15&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -547,7 +547,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 46, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 20, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 23, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 62, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 30, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 68, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 77, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 76, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 67, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 25, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 63, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 47, admin: true, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -589,7 +589,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 62, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 35, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 32, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 34, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 30, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 58, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 45, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 21, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 20, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 72, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 47, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 57, admin: true, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -631,7 +631,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 56, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 70, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 63, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 44, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 36, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 28, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 36, admin: true, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 27, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 55, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 18, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 47, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -759,7 +759,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 68, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 41, admin: true, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -801,7 +801,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 49, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 65, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 38, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 22, admin: false, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2020-06-25 12:54:35&quot;, updated_at: &quot;2020-06-25 12:54:35&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 25, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 76, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 21, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 20, admin: false, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 74, admin: true, created_at: &quot;2021-03-28 19:15:16&quot;, updated_at: &quot;2021-03-28 19:15:16&quot;&gt;]&gt;
     </div>
   </div>
 </div>
