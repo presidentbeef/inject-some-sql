@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="/assets/application-0a0b7b8652e5d2c44acc8cc81f80e5eaf4611d3cb66915d58debd0d99f242e56.css" />
   <script src="/assets/application-5348c7314289000cd1d8cc297800b619fcfd35ec5f1b81778a15a1381b96579c.js"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="XYd6lqIk97ZGUwZ7Q1umLDnbZGz178G8Zyjw4mr8enHWFlQqqmTD1CjRx2JUd0oTI3/T+/Zd60Dks3KaR73KHg==" />
+<meta name="csrf-token" content="FQXEUD4+LPvuHuMb8R9yxBGKB4PxsXypmRjUkdmrsd1GMxO/VsKAockp11m2GCQB/8SqK92yjtYknPSdSo9CKg==" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -128,7 +128,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      52
+      43
     </div>
   </div>
 </div>
@@ -230,7 +230,7 @@ The SQL for selecting the records to delete (where the injection occurs) looks l
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 58, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 71, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 50, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 62, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 30, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 69, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 67, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 35, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 74, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 21, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 31, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 53, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]
     </div>
   </div>
 </div>
@@ -341,7 +341,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 35, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;
+      #&lt;User id: 30, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 56, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;
     </div>
   </div>
 </div>
@@ -383,7 +383,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 31, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 36, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 38, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -425,7 +425,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 41, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 34, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 26, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 63, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 47, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 57, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 37, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 64, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 75, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 30, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 23, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 46, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 50, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -467,7 +467,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 22, user_id: 1, total: 10, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;Order id: 23, user_id: 3, total: 500, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;Order id: 24, user_id: 4, total: 1, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -509,7 +509,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;Order id: 25, user_id: 1, total: 10, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;Order id: 26, user_id: 3, total: 500, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;Order id: 27, user_id: 4, total: 1, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -551,7 +551,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 23, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 77, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 19, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 30, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 35, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 40, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 55, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 51, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 33, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 74, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 47, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 64, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 45, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -593,7 +593,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 19, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 24, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 22, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 27, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 25, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 18, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 61, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 46, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 45, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 43, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 24, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 75, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 38, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -635,7 +635,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 65, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 36, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 76, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 50, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 40, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 72, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 21, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 67, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 28, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 68, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 50, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 69, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 56, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 70, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 74, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 71, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 42, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -763,7 +763,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 68, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 90, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 58, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
@@ -805,7 +805,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 68, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 39, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 58, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 32, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 32, admin: false, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 35, admin: true, created_at: &quot;2021-07-12 20:55:37&quot;, updated_at: &quot;2021-07-12 20:55:37&quot;&gt;]&gt;
+      #&lt;ActiveRecord::Relation [#&lt;User id: 91, name: &quot;Bob&quot;, password: &quot;Bobpass&quot;, age: 66, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 92, name: &quot;Jim&quot;, password: &quot;Jimpass&quot;, age: 72, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 93, name: &quot;Sarah&quot;, password: &quot;Sarahpass&quot;, age: 29, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 94, name: &quot;Tina&quot;, password: &quot;Tinapass&quot;, age: 55, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 95, name: &quot;Tony&quot;, password: &quot;Tonypass&quot;, age: 27, admin: false, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;, #&lt;User id: 96, name: &quot;Admin&quot;, password: &quot;supersecretpass&quot;, age: 42, admin: true, created_at: &quot;2021-07-12 22:27:30&quot;, updated_at: &quot;2021-07-12 22:27:30&quot;&gt;]&gt;
     </div>
   </div>
 </div>
