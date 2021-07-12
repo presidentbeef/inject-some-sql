@@ -6,7 +6,7 @@
   <link rel="stylesheet" media="all" href="/assets/application-9f21d3751af0800669a7d0851d376ca01b98314f3a9a4107355c13896b8874d3.css" />
   <script src="/assets/application-c66b8f92274fed3b1070aeaa1cbc1a3bdebc498ce382906d733a260901372231.js"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="OjGpxiYZowXU2D49XQUjeqI-KPNFOU4vrb5NMzv0iwEo_1--Xswpi9nTcrx56SWOj-UTYYf-bZp3OGmK3A1_Xw" />
+<meta name="csrf-token" content="n8cv5PaqXqgqnNKkjtAJokNiL-ZKsvPIXUrhcw6nN-LwE83lFxcVI1kHbVpDjdaAgp1WwAUTO4PDN67iAwf75Q" />
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
@@ -59,7 +59,7 @@
 The <a href="http://rubyonrails.org/">Ruby on Rails</a> web framework provides a library called <a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord</a> which provides an abstraction for accessing databases.
 </p>
 <p>
-This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilites themselves, only potential misuses of the methods.
+This page lists many query methods and options in ActiveRecord which do not sanitize raw SQL arguments and are not intended to be called with unsafe user input. Careless use of these methods can open up code to <a href="https://owasp.org/index.php/SQL_Injection">SQL Injection</a> exploits. The examples here do not include SQL injection from known CVEs and are not vulnerabilities themselves, only potential misuses of the methods.
 </p>
 <p>
 Please use this list as a guide of what <em>not</em> to do.
@@ -127,7 +127,7 @@ Clone and run this site from <a href="https://github.com/presidentbeef/inject-so
     </div>
     <strong>Result</strong>
     <div>
-      53
+      37
     </div>
   </div>
 </div>
@@ -224,7 +224,7 @@ be escaped at all. Use an array or hash to safely parameterize arguments.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 13, name: &quot;Bob&quot;, password: [FILTERED], age: 73, admin: false, created_at: &quot;2021-07-12 19:32:46.695047000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.695047000 +0000&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: [FILTERED], age: 71, admin: false, created_at: &quot;2021-07-12 19:32:46.698292000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.698292000 +0000&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: [FILTERED], age: 75, admin: false, created_at: &quot;2021-07-12 19:32:46.701128000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.701128000 +0000&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: [FILTERED], age: 58, admin: false, created_at: &quot;2021-07-12 19:32:46.703523000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.703523000 +0000&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: [FILTERED], age: 20, admin: false, created_at: &quot;2021-07-12 19:32:46.705834000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.705834000 +0000&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: [FILTERED], age: 69, admin: true, created_at: &quot;2021-07-12 19:32:46.708549000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.708549000 +0000&quot;&gt;]
+      [#&lt;User id: 13, name: &quot;Bob&quot;, password: [FILTERED], age: 33, admin: false, created_at: &quot;2021-07-12 20:59:14.831063000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.831063000 +0000&quot;&gt;, #&lt;User id: 14, name: &quot;Jim&quot;, password: [FILTERED], age: 61, admin: false, created_at: &quot;2021-07-12 20:59:14.832549000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.832549000 +0000&quot;&gt;, #&lt;User id: 15, name: &quot;Sarah&quot;, password: [FILTERED], age: 51, admin: false, created_at: &quot;2021-07-12 20:59:14.833863000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.833863000 +0000&quot;&gt;, #&lt;User id: 16, name: &quot;Tina&quot;, password: [FILTERED], age: 77, admin: false, created_at: &quot;2021-07-12 20:59:14.835143000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.835143000 +0000&quot;&gt;, #&lt;User id: 17, name: &quot;Tony&quot;, password: [FILTERED], age: 72, admin: false, created_at: &quot;2021-07-12 20:59:14.836489000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.836489000 +0000&quot;&gt;, #&lt;User id: 18, name: &quot;Admin&quot;, password: [FILTERED], age: 59, admin: true, created_at: &quot;2021-07-12 20:59:14.837765000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.837765000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -335,7 +335,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 30, name: &quot;Admin&quot;, password: [FILTERED], age: 67, admin: true, created_at: &quot;2021-07-12 19:32:46.798759000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.798759000 +0000&quot;&gt;]
+      [#&lt;User id: 30, name: &quot;Admin&quot;, password: [FILTERED], age: 45, admin: true, created_at: &quot;2021-07-12 20:59:14.878448000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.878448000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -377,7 +377,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 36, name: &quot;Admin&quot;, password: [FILTERED], age: 75, admin: true, created_at: &quot;2021-07-12 19:32:46.832137000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.832137000 +0000&quot;&gt;]
+      [#&lt;User id: 36, name: &quot;Admin&quot;, password: [FILTERED], age: 65, admin: true, created_at: &quot;2021-07-12 20:59:14.895369000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.895369000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -419,7 +419,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 37, name: &quot;Bob&quot;, password: [FILTERED], age: 48, admin: false, created_at: &quot;2021-07-12 19:32:46.850937000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.850937000 +0000&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: [FILTERED], age: 51, admin: false, created_at: &quot;2021-07-12 19:32:46.854261000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.854261000 +0000&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: [FILTERED], age: 45, admin: false, created_at: &quot;2021-07-12 19:32:46.856945000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.856945000 +0000&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: [FILTERED], age: 69, admin: false, created_at: &quot;2021-07-12 19:32:46.859427000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.859427000 +0000&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: [FILTERED], age: 20, admin: false, created_at: &quot;2021-07-12 19:32:46.862476000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.862476000 +0000&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: [FILTERED], age: 25, admin: true, created_at: &quot;2021-07-12 19:32:46.865165000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.865165000 +0000&quot;&gt;]
+      [#&lt;User id: 37, name: &quot;Bob&quot;, password: [FILTERED], age: 60, admin: false, created_at: &quot;2021-07-12 20:59:14.905022000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.905022000 +0000&quot;&gt;, #&lt;User id: 38, name: &quot;Jim&quot;, password: [FILTERED], age: 25, admin: false, created_at: &quot;2021-07-12 20:59:14.906601000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.906601000 +0000&quot;&gt;, #&lt;User id: 39, name: &quot;Sarah&quot;, password: [FILTERED], age: 76, admin: false, created_at: &quot;2021-07-12 20:59:14.908042000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.908042000 +0000&quot;&gt;, #&lt;User id: 40, name: &quot;Tina&quot;, password: [FILTERED], age: 23, admin: false, created_at: &quot;2021-07-12 20:59:14.909476000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.909476000 +0000&quot;&gt;, #&lt;User id: 41, name: &quot;Tony&quot;, password: [FILTERED], age: 24, admin: false, created_at: &quot;2021-07-12 20:59:14.910963000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.910963000 +0000&quot;&gt;, #&lt;User id: 42, name: &quot;Admin&quot;, password: [FILTERED], age: 63, admin: true, created_at: &quot;2021-07-12 20:59:14.912349000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.912349000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -461,7 +461,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 22, user_id: 43, total: 10, created_at: &quot;2021-07-12 19:32:46.901474000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.901474000 +0000&quot;&gt;, #&lt;Order id: 23, user_id: 44, total: 500, created_at: &quot;2021-07-12 19:32:46.904394000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.904394000 +0000&quot;&gt;, #&lt;Order id: 24, user_id: 46, total: 1, created_at: &quot;2021-07-12 19:32:46.907407000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.907407000 +0000&quot;&gt;]
+      [#&lt;Order id: 22, user_id: 43, total: 10, created_at: &quot;2021-07-12 20:59:14.932112000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.932112000 +0000&quot;&gt;, #&lt;Order id: 23, user_id: 44, total: 500, created_at: &quot;2021-07-12 20:59:14.933970000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.933970000 +0000&quot;&gt;, #&lt;Order id: 24, user_id: 46, total: 1, created_at: &quot;2021-07-12 20:59:14.935819000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.935819000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -503,7 +503,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;Order id: 25, user_id: 49, total: 10, created_at: &quot;2021-07-12 19:32:46.937133000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.937133000 +0000&quot;&gt;, #&lt;Order id: 26, user_id: 50, total: 500, created_at: &quot;2021-07-12 19:32:46.939939000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.939939000 +0000&quot;&gt;, #&lt;Order id: 27, user_id: 52, total: 1, created_at: &quot;2021-07-12 19:32:46.942628000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.942628000 +0000&quot;&gt;]
+      [#&lt;Order id: 25, user_id: 49, total: 10, created_at: &quot;2021-07-12 20:59:14.949440000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.949440000 +0000&quot;&gt;, #&lt;Order id: 26, user_id: 50, total: 500, created_at: &quot;2021-07-12 20:59:14.951265000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.951265000 +0000&quot;&gt;, #&lt;Order id: 27, user_id: 52, total: 1, created_at: &quot;2021-07-12 20:59:14.953022000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.953022000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -545,7 +545,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 55, name: &quot;Bob&quot;, password: [FILTERED], age: 24, admin: false, created_at: &quot;2021-07-12 19:32:46.951785000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.951785000 +0000&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: [FILTERED], age: 58, admin: false, created_at: &quot;2021-07-12 19:32:46.955536000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.955536000 +0000&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: [FILTERED], age: 41, admin: false, created_at: &quot;2021-07-12 19:32:46.959531000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.959531000 +0000&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: [FILTERED], age: 18, admin: false, created_at: &quot;2021-07-12 19:32:46.962766000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.962766000 +0000&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: [FILTERED], age: 43, admin: false, created_at: &quot;2021-07-12 19:32:46.965302000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.965302000 +0000&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: [FILTERED], age: 77, admin: true, created_at: &quot;2021-07-12 19:32:46.968436000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.968436000 +0000&quot;&gt;]
+      [#&lt;User id: 55, name: &quot;Bob&quot;, password: [FILTERED], age: 50, admin: false, created_at: &quot;2021-07-12 20:59:14.957492000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.957492000 +0000&quot;&gt;, #&lt;User id: 56, name: &quot;Jim&quot;, password: [FILTERED], age: 21, admin: false, created_at: &quot;2021-07-12 20:59:14.958984000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.958984000 +0000&quot;&gt;, #&lt;User id: 57, name: &quot;Sarah&quot;, password: [FILTERED], age: 23, admin: false, created_at: &quot;2021-07-12 20:59:14.960294000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.960294000 +0000&quot;&gt;, #&lt;User id: 58, name: &quot;Tina&quot;, password: [FILTERED], age: 56, admin: false, created_at: &quot;2021-07-12 20:59:14.961576000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.961576000 +0000&quot;&gt;, #&lt;User id: 59, name: &quot;Tony&quot;, password: [FILTERED], age: 33, admin: false, created_at: &quot;2021-07-12 20:59:14.962813000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.962813000 +0000&quot;&gt;, #&lt;User id: 60, name: &quot;Admin&quot;, password: [FILTERED], age: 63, admin: true, created_at: &quot;2021-07-12 20:59:14.964114000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.964114000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -587,7 +587,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 61, name: &quot;Bob&quot;, password: [FILTERED], age: 42, admin: false, created_at: &quot;2021-07-12 19:32:46.986022000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.986022000 +0000&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: [FILTERED], age: 54, admin: false, created_at: &quot;2021-07-12 19:32:46.988410000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.988410000 +0000&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: [FILTERED], age: 68, admin: false, created_at: &quot;2021-07-12 19:32:46.990922000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.990922000 +0000&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: [FILTERED], age: 59, admin: false, created_at: &quot;2021-07-12 19:32:46.993401000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.993401000 +0000&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: [FILTERED], age: 52, admin: false, created_at: &quot;2021-07-12 19:32:46.996285000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.996285000 +0000&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: [FILTERED], age: 67, admin: true, created_at: &quot;2021-07-12 19:32:46.998785000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:46.998785000 +0000&quot;&gt;]
+      [#&lt;User id: 61, name: &quot;Bob&quot;, password: [FILTERED], age: 50, admin: false, created_at: &quot;2021-07-12 20:59:14.974688000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.974688000 +0000&quot;&gt;, #&lt;User id: 62, name: &quot;Jim&quot;, password: [FILTERED], age: 67, admin: false, created_at: &quot;2021-07-12 20:59:14.976105000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.976105000 +0000&quot;&gt;, #&lt;User id: 63, name: &quot;Sarah&quot;, password: [FILTERED], age: 38, admin: false, created_at: &quot;2021-07-12 20:59:14.977421000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.977421000 +0000&quot;&gt;, #&lt;User id: 64, name: &quot;Tina&quot;, password: [FILTERED], age: 45, admin: false, created_at: &quot;2021-07-12 20:59:14.978680000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.978680000 +0000&quot;&gt;, #&lt;User id: 65, name: &quot;Tony&quot;, password: [FILTERED], age: 57, admin: false, created_at: &quot;2021-07-12 20:59:14.979994000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.979994000 +0000&quot;&gt;, #&lt;User id: 66, name: &quot;Admin&quot;, password: [FILTERED], age: 75, admin: true, created_at: &quot;2021-07-12 20:59:14.981293000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.981293000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -629,7 +629,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 72, name: &quot;Admin&quot;, password: [FILTERED], age: 29, admin: true, created_at: &quot;2021-07-12 19:32:47.028593000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.028593000 +0000&quot;&gt;]
+      [#&lt;User id: 72, name: &quot;Admin&quot;, password: [FILTERED], age: 23, admin: true, created_at: &quot;2021-07-12 20:59:14.997810000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:14.997810000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -671,7 +671,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 37, created_at: &quot;2021-07-12 19:32:47.063939000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.063939000 +0000&quot;&gt;, #&lt;User id: 38, created_at: &quot;2021-07-12 19:32:47.067138000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.067138000 +0000&quot;&gt;, #&lt;User id: 39, created_at: &quot;2021-07-12 19:32:47.069936000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.069936000 +0000&quot;&gt;]
+      [#&lt;User id: 37, created_at: &quot;2021-07-12 20:59:15.016346000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.016346000 +0000&quot;&gt;, #&lt;User id: 38, created_at: &quot;2021-07-12 20:59:15.018167000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.018167000 +0000&quot;&gt;, #&lt;User id: 39, created_at: &quot;2021-07-12 20:59:15.020293000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.020293000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -713,7 +713,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 79, name: &quot;Bob&quot;, password: [FILTERED], age: 30, admin: false, created_at: &quot;2021-07-12 19:32:47.079630000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.079630000 +0000&quot;&gt;, #&lt;User id: 80, name: &quot;Jim&quot;, password: [FILTERED], age: 59, admin: false, created_at: &quot;2021-07-12 19:32:47.082301000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.082301000 +0000&quot;&gt;, #&lt;User id: 81, name: &quot;Sarah&quot;, password: [FILTERED], age: 45, admin: false, created_at: &quot;2021-07-12 19:32:47.085065000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.085065000 +0000&quot;&gt;, #&lt;User id: 82, name: &quot;Tina&quot;, password: [FILTERED], age: 58, admin: false, created_at: &quot;2021-07-12 19:32:47.088348000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.088348000 +0000&quot;&gt;, #&lt;User id: 83, name: &quot;Tony&quot;, password: [FILTERED], age: 19, admin: false, created_at: &quot;2021-07-12 19:32:47.091157000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.091157000 +0000&quot;&gt;, #&lt;User id: 84, name: &quot;Admin&quot;, password: [FILTERED], age: 74, admin: true, created_at: &quot;2021-07-12 19:32:47.093657000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.093657000 +0000&quot;&gt;]
+      [#&lt;User id: 79, name: &quot;Bob&quot;, password: [FILTERED], age: 30, admin: false, created_at: &quot;2021-07-12 20:59:15.024171000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.024171000 +0000&quot;&gt;, #&lt;User id: 80, name: &quot;Jim&quot;, password: [FILTERED], age: 48, admin: false, created_at: &quot;2021-07-12 20:59:15.025577000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.025577000 +0000&quot;&gt;, #&lt;User id: 81, name: &quot;Sarah&quot;, password: [FILTERED], age: 53, admin: false, created_at: &quot;2021-07-12 20:59:15.026981000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.026981000 +0000&quot;&gt;, #&lt;User id: 82, name: &quot;Tina&quot;, password: [FILTERED], age: 34, admin: false, created_at: &quot;2021-07-12 20:59:15.028322000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.028322000 +0000&quot;&gt;, #&lt;User id: 83, name: &quot;Tony&quot;, password: [FILTERED], age: 64, admin: false, created_at: &quot;2021-07-12 20:59:15.029727000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.029727000 +0000&quot;&gt;, #&lt;User id: 84, name: &quot;Admin&quot;, password: [FILTERED], age: 54, admin: true, created_at: &quot;2021-07-12 20:59:15.031036000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.031036000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
@@ -757,7 +757,7 @@ and are therefore vulnerable to SQL injeection in the same way.</p>
     </div>
     <strong>Result</strong>
     <div>
-      [#&lt;User id: 85, name: &quot;Bob&quot;, password: [FILTERED], age: 76, admin: false, created_at: &quot;2021-07-12 19:32:47.113706000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.113706000 +0000&quot;&gt;, #&lt;User id: 86, name: &quot;Jim&quot;, password: [FILTERED], age: 45, admin: false, created_at: &quot;2021-07-12 19:32:47.116865000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.116865000 +0000&quot;&gt;, #&lt;User id: 87, name: &quot;Sarah&quot;, password: [FILTERED], age: 45, admin: false, created_at: &quot;2021-07-12 19:32:47.119646000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.119646000 +0000&quot;&gt;, #&lt;User id: 88, name: &quot;Tina&quot;, password: [FILTERED], age: 31, admin: false, created_at: &quot;2021-07-12 19:32:47.122651000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.122651000 +0000&quot;&gt;, #&lt;User id: 89, name: &quot;Tony&quot;, password: [FILTERED], age: 68, admin: false, created_at: &quot;2021-07-12 19:32:47.125737000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.125737000 +0000&quot;&gt;, #&lt;User id: 90, name: &quot;Admin&quot;, password: [FILTERED], age: 48, admin: true, created_at: &quot;2021-07-12 19:32:47.128172000 +0000&quot;, updated_at: &quot;2021-07-12 19:32:47.128172000 +0000&quot;&gt;]
+      [#&lt;User id: 85, name: &quot;Bob&quot;, password: [FILTERED], age: 48, admin: false, created_at: &quot;2021-07-12 20:59:15.040931000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.040931000 +0000&quot;&gt;, #&lt;User id: 86, name: &quot;Jim&quot;, password: [FILTERED], age: 26, admin: false, created_at: &quot;2021-07-12 20:59:15.042840000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.042840000 +0000&quot;&gt;, #&lt;User id: 87, name: &quot;Sarah&quot;, password: [FILTERED], age: 24, admin: false, created_at: &quot;2021-07-12 20:59:15.044194000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.044194000 +0000&quot;&gt;, #&lt;User id: 88, name: &quot;Tina&quot;, password: [FILTERED], age: 74, admin: false, created_at: &quot;2021-07-12 20:59:15.045440000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.045440000 +0000&quot;&gt;, #&lt;User id: 89, name: &quot;Tony&quot;, password: [FILTERED], age: 24, admin: false, created_at: &quot;2021-07-12 20:59:15.046838000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.046838000 +0000&quot;&gt;, #&lt;User id: 90, name: &quot;Admin&quot;, password: [FILTERED], age: 45, admin: true, created_at: &quot;2021-07-12 20:59:15.048183000 +0000&quot;, updated_at: &quot;2021-07-12 20:59:15.048183000 +0000&quot;&gt;]
     </div>
   </div>
 </div>
