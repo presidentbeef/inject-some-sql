@@ -108,6 +108,9 @@ This query will always return true. To be be safe, convert user input to a strin
     :desc => <<-MD
 Added in Rails 4, the `find_by`/`find_by!` methods are simply calling `where(*args).take`, so all the options for `where` also apply.
 
+Note that `find_or_create_by` / `find_or_create_by!` / `find_or_initialize_by` all call `find_by`
+and are therefore vulnerable to SQL injeection in the same way.
+
 The safest (and most common) use of these methods is to pass in a hash table.
     MD
   },

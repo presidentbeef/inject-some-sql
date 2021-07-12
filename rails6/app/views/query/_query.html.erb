@@ -1,0 +1,33 @@
+<%
+    query_box_id = query[:name].underscore
+    query_result_id = "#{query_box_id}_result"
+%>
+
+<div class="querybox" id="<%= query_box_id %>">
+  <%= form_with(url: "/query/#{query[:action]}", local: false) do |form| %>
+    <fieldset>
+      <%= hidden_field_tag :result_field, query_result_id %>
+      <legend><%= query[:name] || query[:action] %></legend>
+
+      <div style="margin-bottom: 4px">
+        <code><%= ruby_color query[:query] %></code>
+      </div>
+
+      <% if input = query[:input] %>
+        <div class="control-group">
+          <div class="input-prepend input-append">
+            <span class="add-on"><%= input[:name].capitalize %></span>
+            <%= text_field_tag input[:name], input[:example], :class => 'text_field input-xlarge' %>
+
+            <%= form.submit "Run!", :class => 'btn' %>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  </fieldset>
+
+  <div class="result" id="<%= query_result_id %>">
+  </div>
+
+</div>

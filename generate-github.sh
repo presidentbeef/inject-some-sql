@@ -65,11 +65,33 @@ cp -rf localhost\:3000/assets/* ../tmp/assets/
 rm -rf localhost\:3000
 cd ..
 
+echo "NOW RAILS 6"
+
+cd rails6
+gem install bundler -v"2.2.21"
+bundle install --jobs 4 --retry 3
+
+RAILS_ENV=production bundle exec rails assets:clobber
+RAILS_ENV=production bundle exec rails assets:precompile
+RAILS_ENV=production rails db:environment:set RAILS_ENV=production
+RAILS_ENV=production bundle exec rails db:schema:load
+RAILS_ENV=production bundle exec rails db:seed
+RAILS_ENV=production bundle exec rails s &
+sleep 10
+wget -p http://localhost:3000/examples
+kill %1
+cp localhost\:3000/examples ../tmp/rails6.html
+cp localhost\:3000/examples ../tmp/index.html
+cp -rf localhost\:3000/assets/* ../tmp/assets/
+rm -rf localhost\:3000
+cd ..
+
 echo "Checking results"
 test -f tmp/index.html
 test -f tmp/rails3.html
 test -f tmp/rails4.html
 test -f tmp/rails5.html
+test -f tmp/rails6.html
 
 if [ ${GITHUB_REF##*/} = "master" ]
 then
@@ -82,7 +104,7 @@ then
   git config --local user.email "action@github.com"
   git config --local user.name "GitHub Action"
 
-  git add index.html rails3.html rails4.html rails5.html assets/
+  git add index.html rails3.html rails4.html rails5.html rails6.html assets/
   git -c user.name="GitHub Actions" -c user.email="noreply@github.com" commit \
           --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
           -m "Automated build at $(date -u)"

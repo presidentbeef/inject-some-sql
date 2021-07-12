@@ -1,0 +1,77 @@
+class QueryController < ApplicationController
+  after_action :reset_database, :except => [:index, :examples]
+
+  def index
+    @queries = Queries
+  end
+
+  def examples
+    @queries = Queries.map do |q|
+      params[q[:input][:name]] = q[:input][:example]
+
+      result = q.dup
+
+      begin
+        value = eval(q[:query])
+        result[:result] = case value 
+                          when TrueClass, FalseClass, Numeric, String
+                            value
+                          else
+                            Array(value)
+                          end.inspect
+      rescue => e
+        result[:result] = e
+      end
+
+      params[q[:input][:name]] = nil
+      result[:sql] = last_sql
+
+      reset_database
+
+      result
+    end
+
+    render :layout => 'examples'
+  end
+
+  Queries.each do |query|
+    class_eval <<-RUBY
+      def #{query[:action]}
+        begin
+        value = #{query[:query]}
+        result = case value 
+                  when TrueClass, FalseClass, Numeric, String
+                    value
+                  else
+                    Array(value)
+                  end.inspect
+
+          show result 
+        rescue => e
+          @error = e
+          @sql = last_sql
+          render :partial => 'error'
+        end
+      end
+    RUBY
+  end
+
+  private
+
+  def show query
+    @sql = last_sql
+    render :partial => 'result', :locals => { :query => query }
+  end
+
+  def last_sql
+    sql = $last_sql
+    $last_sql = nil
+    sql
+  end
+
+  def reset_database
+    Order.delete_all
+    User.delete_all
+    load File.join(Rails.root, 'db/seeds.rb')
+  end
+end
