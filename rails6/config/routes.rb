@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  post 'query/:action', :controller => :query
+  post 'query/:action', controller: :query
 
-  get 'examples' => 'query#examples'
+  get 'examples', to: 'query#examples'
 
-  root :to => 'query#index'
+  root 'query#index'
 end
