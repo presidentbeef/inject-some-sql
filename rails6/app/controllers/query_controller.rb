@@ -12,7 +12,13 @@ class QueryController < ApplicationController
       result = q.dup
 
       begin
-        result[:result] = eval(q[:query]).inspect
+        value = eval(q[:query])
+        result[:result] = case value 
+                          when TrueClass, FalseClass, Numeric, String
+                            value
+                          else
+                            Array(value)
+                          end.inspect
       rescue => e
         result[:result] = e
       end
@@ -32,7 +38,15 @@ class QueryController < ApplicationController
     class_eval <<-RUBY
       def #{query[:action]}
         begin
-          show #{query[:query]}
+        value = #{query[:query]}
+        result = case value 
+                  when TrueClass, FalseClass, Numeric, String
+                    value
+                  else
+                    Array(value)
+                  end.inspect
+
+          show result 
         rescue => e
           @error = e
           @sql = last_sql

@@ -68,13 +68,14 @@ cd ..
 echo "NOW RAILS 6"
 
 cd rails6
+gem install bundler -v"2.2.21"
 bundle install --jobs 4 --retry 3
 
-bundle exec rails webpacker:install
 RAILS_ENV=production bundle exec rails assets:clobber
 RAILS_ENV=production bundle exec rails assets:precompile
 RAILS_ENV=production rails db:environment:set RAILS_ENV=production
-RAILS_ENV=production bundle exec rails db:migrate
+RAILS_ENV=production bundle exec rails db:schema:load
+RAILS_ENV=production bundle exec rails db:seed
 RAILS_ENV=production bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples

@@ -70,11 +70,11 @@ rvm --force $USE_RUBY@iss gemset empty
 rvm $USE_RUBY@iss do gem install bundler
 cd rails6
 rvm $USE_RUBY@iss do bundle install
-rvm $USE_RUBY@iss do bundle exec rails webpacker:install
 RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails assets:clobber
 RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails assets:precompile
 RAILS_ENV=production rvm $USE_RUBY@iss do rails db:environment:set RAILS_ENV=production
-RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails db:migrate
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails db:schema:load
+RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails db:seed
 RAILS_ENV=production rvm $USE_RUBY@iss do bundle exec rails s &
 sleep 10
 wget -p http://localhost:3000/examples
@@ -91,6 +91,6 @@ rm -rf assets
 mv tmp/* .
 rm -rf tmp
 
-git add index.html rails3.html rails4.html rails5.html assets/
+git add index.html rails3.html rails4.html rails5.html rails6.html assets/
 echo "To deploy:"
 echo "git commit && git push"
