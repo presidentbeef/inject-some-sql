@@ -43,8 +43,8 @@ Never pass user input directly to `delete_by`.
   },
 
   {
-    :action => :destroy_all,
-    :name => "Destroy All Method",
+    :action => :destroy_by,
+    :name => "Destroy By Method",
     :link => "https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/Relation.html#method-i-destroy_by",
     :query => 'User.destroy_by(["id = ? AND admin = \'#{params[:admin]}", params[:id]])',
     :input => {:name => :admin, :example => "') OR 1=1--'"},
